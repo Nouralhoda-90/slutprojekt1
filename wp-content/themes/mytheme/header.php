@@ -34,7 +34,7 @@
             </div>
 
 
-<!-- 
+
 
             <div class="header-menu">
                 <?php
@@ -43,7 +43,7 @@
                     'menu_id' => 'primary-menu',
                     'container' => 'nav',
                     'container_class' => 'menu'
-                ); -->
+                ); 
                 wp_nav_menu($menu);
                 ?>
                 <!-- Bag count -->
