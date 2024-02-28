@@ -42,7 +42,7 @@
             wp_nav_menu($menu);
             ?>
         </div>
-        <div class="column-newsletter">
+        <!-- <div class="column-newsletter">
             <span class="category">Newsletter</span>
             <div class="subscribe">
                 <form class="subscribe-form">
@@ -85,4 +85,4 @@ if (count($recent_posts) > 0) {
     echo '</ul>';
 }
 
-?>
+?> -->
