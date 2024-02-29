@@ -1,0 +1,63 @@
+$footer-primary-background-color: #323334;
+$footer-secondary-background-color: #222222;;
+
+$primary-font-color: black;
+$secondary-font-color: #FFFFFF;
+
+$globle_color: red;
+$tertiary-font-color: #B88E2F;
+$secondary-background-color: #FFF9E5;
+$tertiary-background-color: #FAF4F4;
+$footer-line-color: #D9D9D9;
+$product-color-1: #816DFA;
+$product-color-2: black;
+$product-color-3: #CDBA7B;
+
+$primary-background-color:#FFFFFF;
+$primary-text-color:  #323334;
+
+$primary-background-color: FFFFFF;
+$primary-text-color: #323334;
+//GLOBAL
+$content-width: calc(100% - 154px);
+
+//FONTS
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../fonts/roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../fonts/roboto/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../fonts/roboto/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Roboto-Light';
+    src: url('../fonts/roboto/Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+  }
+
+  $regular-font: 'Roboto-Regular';
+  $medium-font: 'Roboto-Medium';
+  $light-font: 'Roboto-Light';
+  $bold-font: 'Roboto-Bold';
+
+//COLORS
+$header-border-lines: #2a2b2d;
+$primary-font-color: #23272b;
+$background-color: #e78e8e;
+
+/*FOOTER*/
+$footer-text-primary:#FFFFFF80;
+$footer-text-secondary: #fff;
+$footer-background-color-primary: #323334;
+$footer-background-color-secondary:#222222;
