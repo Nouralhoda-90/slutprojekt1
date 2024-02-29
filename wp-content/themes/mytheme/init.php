@@ -20,8 +20,8 @@ function mytheme_init()
 
     // register MENU
     $menu = array(
-        'main_menu' => 'main_menu',
-        'main_menu_icons' => 'main_menu_icons',
+        'huvudmeny' => 'huvudmeny',
+        'menyikoner'=>'menyikoner',
         'footer_social_media' => 'footer_social_media',
         'footer_shopping' => 'footer_shopping',
         'footer_links' => 'footer_links',
