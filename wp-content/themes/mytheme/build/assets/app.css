@@ -102,7 +102,7 @@ header .upper-header .column-50 nav li.search-icon a::before {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-image: url("./search.svg");
+  background-image: url("../images/Group.png");
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -187,7 +187,9 @@ footer {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 495px;
+  height: 364px;
+  margin-bottom: 0;
+  margin-top: 150;
   background-color: #323334;
 }
 footer .container {
@@ -261,7 +263,7 @@ footer .container .column-address nav.menu #footer_social_media li.facebook::bef
   height: 20px;
   flex-shrink: 0;
   background-size: cover;
-  background-image: url("../images/facebook.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAUCAYAAAC07qxWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACISURBVHgB3VLBDYAgDCyGQdxER3EEN1A2kE3cQN1EJ5ANsBgSLwiBhy8vuVDopW2OEgWw1nbMhXnaB5MMRAMfI0VQgahOiRgGK3ZBUjNnH+8yUYGEEH20dQ7FQums8HGNCXh32IQzifLQpa1ve5S/NMwWkgriFWca4cte43xvz6+EuGaGeaSEFy1QQ5CvqJB/AAAAAElFTkSuQmCC");
 }
 footer .container .column-address nav.menu #footer_social_media li.twitter::before {
   content: "";
@@ -270,7 +272,7 @@ footer .container .column-address nav.menu #footer_social_media li.twitter::befo
   height: 20px;
   flex-shrink: 0;
   background-size: cover;
-  background-image: url("../images/twitter.png");
+  background-image: url("./twitter.png");
 }
 footer .container .column-address nav.menu #footer_social_media li.instagram::before {
   content: "";
@@ -279,7 +281,7 @@ footer .container .column-address nav.menu #footer_social_media li.instagram::be
   height: 20px;
   flex-shrink: 0;
   background-size: cover;
-  background-image: url("../images/instagram.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAECSURBVHgBnVSBDYIwEPwSB4ANcALZAEZwA3EC3QCdwDiBbABOIG7gBuAEsEG9l29SmxqFSy5Pn/7n71pQJNBahwg7MAFDiwaDxatSqiQbaBCDrZ6GluvsJrcJxZ31XNlT/ItGakpZ92AYIBeTH0cwgnaFuJT1CkVrjrLn7duCPs0z2II1Gy267+h1wDObWjl7Yx4t/zGywemLf1ngmaLR43FvnHwu8ekW+JpMhq9JCv2s/ezkzTp1C9jYwcllkFOg0R7xQePpNVizzIJ8p8nGaD8uYCL3KPMYbRArMbGneRgwYRSI/obmobYlzfkAzVUgZbfV45XOyP8r6IwEnoCNNi9eFoygQ3abBv8AAAAASUVORK5CYII=");
 }
 footer .container .column-address nav.menu #footer_social_media li.youtube::before {
   content: "";
@@ -288,11 +290,11 @@ footer .container .column-address nav.menu #footer_social_media li.youtube::befo
   height: 20px;
   flex-shrink: 0;
   background-size: cover;
-  background-image: url("../images/youtube.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAMCAYAAACEJVa/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADmSURBVHgBlZKNDYIwEIWvxAEcgQ1wA2EC6wTqBrIBbqAbuIFxA5hANqBMIBvUd+Eam2oDvOTL9e9ertcqgqy1a4QccExpWgMwoFVKGSUm3czkfyoSGGhxLjza4OAJ9BGTcyIVMDuUViMeaLyWr5riyhJJYLQsHsENPMHeq0pLlVx1KdXxmFYR9yGAUGUrD9BgfOU1zHOEbUILhGQ2fIfri0yc+DHAi6twJkPkLPfCBMmu4ZzDPbvwZOWbyB1ZGWjAhqTp2LM0vqKWvTt4gF6Je0e/zzpXpfuxKUJF31+bTiQaB5pdfQBpvVHuUAdqygAAAABJRU5ErkJggg==");
 }
 footer .container .column-shopping,
 footer .container .column-links {
-  width: 16%;
+  width: 30%;
   height: auto;
 }
 footer .container .column-shopping span.category,
@@ -313,7 +315,7 @@ footer .container .column-links ul {
 }
 footer .container .column-shopping ul li,
 footer .container .column-links ul li {
-  margin-bottom: 32px;
+  margin-bottom: 18px;
 }
 footer .container .column-shopping ul li a,
 footer .container .column-links ul li a {
