@@ -31,18 +31,20 @@ header{
             }
             
             .basket-item-count {
-                background-color: #F2994A;
+              
+                background-color: #eaaa34;
                 color: #fff;
                 border-radius: 50%;
-                padding: 4px 8px;
-                font-family: $bold-font;
+                padding: 3px 3px;
+                font-family: "Roboto-Bold";
                 font-weight: 700;
                 font-size: 10px;
                 line-height: 11.72px;
                 position: relative;
-                top: 8px;
-                right: 130px;
-                
+                top: 17px;
+                right: 61px;
+                width: 12px;
+                height: 12px;
             }
     
             nav {
@@ -50,88 +52,43 @@ header{
                 align-items: center; 
                 margin-left: auto; 
                 position: relative;
+            }
             
-                ul {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                    display: flex; 
-                    position: relative;
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex; 
+                position: relative;
+            }
+            
+            li {
+                margin-right: 50px;
+                position: relative; /* Add position relative to allow absolute positioning */
+            
+                a {
+                    color: transparent;
+                    font-size: 6px;
+                    display: block;
+                    width: 27px; /* Set the width of the link container */
+                    height: 27px; /* Set the height of the link container */
+                    position: relative; /* Add position relative for absolute positioning of pseudo-elements */
                 }
             
-                li {
-                    margin-right: 50px;
-            
-                    a {
-                        // color: transparent;
-                        font-size: 6px;
-                        display: block;
-                    }
-            
-                    &.search-icon {
-                        a::before {
-                            content: "";
-                            display: inline-block;
-                            width: 27px;
-                            height: 27px;
-                            position: absolute;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            background-image: url("../images/Group.png");
-                            background-size: contain;
-                            background-position: center center;
-                            background-repeat: no-repeat;
-                        }
-                    }
-            
-                    &.account-icon {
-                        a::before {
-                            content: "";
-                            display: inline-block;
-                            width: 22.17px;
-                            height: 29.57px;
-                            position: absolute;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            background-image: url("../images/person.png");
-                            background-size: contain;
-                            background-position: center center;
-                            background-repeat: no-repeat;
-                        }
-                    }
-
-                    &.cart-icon {
-                        a:before {
-                            content: "";
-                            display: inline-block;
-                            width: 34px;
-                            height: 34px;
-                            position: absolute;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            background-image: url("../images/basket.webp");
-                            background-size: contain;
-                            background-position: center center;
-                            background-repeat: no-repeat;
-                        }
-                        
-                    }
-
-                    &.favorites-icon {
-                        a:before {
-                            content: "";
-                            display: inline-block;
-                            width: 29.41px;
-                            height: 27.58px;
-                            position: absolute;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            background-image: url("../images/icons8-favorite-50.png");
-                            background-size: contain;
-                            background-position: center center;
-                            background-repeat: no-repeat;
-                        }
-                    }
+                &.search-icon::before,
+                &.account-icon::before,
+                &.cart-icon::before,
+                &.favorites-icon::before {
+                    content: "";
+                    display: inline-block;
+                    width: 100%; /* Set the width to fill the container */
+                    height: 100%; /* Set the height to fill the container */
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-size: contain;
+                    background-position: center center;
+                    background-repeat: no-repeat;
                 }
             }
         }
