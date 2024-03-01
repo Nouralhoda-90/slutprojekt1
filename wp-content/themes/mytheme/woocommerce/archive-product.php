@@ -35,6 +35,8 @@ do_action( 'woocommerce_before_main_content' );
 // 	<?php endif; ?>
 
 // 	<?php
+
+
 	/**
 	 * Hook: woocommerce_archive_description.
 	 *
