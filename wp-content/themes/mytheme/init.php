@@ -3,7 +3,7 @@
 
 require_once('vite.php');
 require_once('ajax.php');
-require_once('setting.php');
+require_once('settings.php');
 
 function mytheme_enqueue()
 {

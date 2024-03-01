@@ -15,10 +15,6 @@
     "file": "assets/Roboto-Regular.ttf",
     "src": "resources/fonts/roboto/Roboto-Regular.ttf"
   },
-  "resources/images/twitter.png": {
-    "file": "assets/twitter.png",
-    "src": "resources/images/twitter.png"
-  },
   "resources/scripts/app.js": {
     "file": "assets/app.js",
     "isEntry": true,
