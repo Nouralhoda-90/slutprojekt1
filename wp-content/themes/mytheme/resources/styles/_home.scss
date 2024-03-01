@@ -1,0 +1,22 @@
+.services{
+    font-family: 'Roboto-Bold';
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+
+    .services-icon{
+        padding: 10px;
+    }
+
+    .services-content{
+        padding: 10px 140px;
+    }
+
+    .money-back{
+        margin-top: -6px;
+    }
+
+    .services-text{
+        opacity: 0.5;
+    }
+}
