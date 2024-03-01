@@ -42,47 +42,26 @@
             wp_nav_menu($menu);
             ?>
         </div>
-        <!-- <div class="column-newsletter">
-            <span class="category">Newsletter</span>
-            <div class="subscribe">
-                <form class="subscribe-form">
-                    <input type="email" placeholder="Enter Your Email Address">
-                    <button type="submit">SUBSCRIBE</button>
-                </form>
-            </div>
-        </div>
-    </section>
+       
+        <section class="footer-right">
+    <h3 class="footer-content">FROM THE CONTENT</h3>
 
-    <section class="container-copyright">
-        <div class="footer-line"></div>
-        <span class="site-info">
-            <?= get_option("store_copyright") ?>
-        </span>
-    </section>
+    <article class="content1">
+        <p class="content1-1">26 <span class="span-content1-1">May</span></p>
+        <p class="content1-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="content1-3">3 comments</p>
+    </article>
+    <div class="line"></div>
+    <article class="content2">
+        <p class="content2-1">27 <span class="span-content2-1">May</span></p>
+        <p class="content2-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="content1-3">3 comments</p>
+    </article>
+</section>
+
+
+    <div class="new-copyright">
+        <div class="new-copyright1"><?=  " Urban Outfitters" ?>&copy;All rights reserved</div>
+    </div>
 </footer>
-</body>
-
-</html>
-
-<?php
-// submit form input
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // get email
-    $email = $_POST['email'];
-    // do something(check email, verify, save...)
-    echo ('Your inputed email is : ' . $email);
-}
-
-$recent_posts = wp_get_recent_posts(array(
-    'numberposts' => 2, // get newest 2 posts
-    'post_status' => 'publish' // should be published post
-));
-if (count($recent_posts) > 0) {
-    echo '<ul class="footer-blog-posts">';
-    foreach ($recent_posts as $post) {
-        echo '<li><a href="' . get_permalink($post["ID"]) . '">' . esc_attr($post["post_title"]) . '</a></li>';
-    }
-    echo '</ul>';
-}
-
-?> -->
+<?php wp_footer(); ?>
