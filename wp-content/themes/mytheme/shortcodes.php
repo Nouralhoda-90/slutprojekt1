@@ -55,10 +55,10 @@ function moody_studio_shortcode_draw_box($attr)
         "box"
     );
 
-       return '<div class="box">
+       return '<div class="bedsheet box">
        <h2>BEDSHEET SETS</h2>
-       <h3>300 kr</h3>
-       <h4>700 kr</h4>
+       <h3>500 kr</h3>
+       <h4>2200 kr</h4>
        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
        </div>';
 
