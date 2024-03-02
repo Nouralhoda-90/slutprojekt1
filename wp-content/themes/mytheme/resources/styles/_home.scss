@@ -114,3 +114,118 @@ body{
 
     }
 }
+
+.decor-bohochic{
+    padding: 20px 40px;
+    font-family: 'Roboto-Bold';
+
+    h2{
+        font-size: 18px;
+        color: $dark-grey-color;
+    }
+
+    span{
+        font-size: 24px;
+        color: $dark-grey-color;
+    }
+
+    .wp-block-cover__inner-container{
+        padding: 22px;
+
+        h3{
+            font-size: 28px;
+            margin-top: -80px;
+        }
+
+        p{
+            font-size: 16px;
+            margin-top: 30px;
+        }
+    }
+
+    .wp-element-button {
+        color: white;
+        margin: -120px 40px;
+        z-index: 1;
+        border: 1px solid white;
+
+        &:hover{
+            border: 1px solid $dark-grey-color;
+        }
+    }
+
+}
+
+.top-rating{
+    padding: 40px;
+    font-family: 'Roboto-Bold';
+    display: flex;
+
+    h2{
+        font-size: 34px;
+        padding-bottom: 25px;
+        color: $dark-grey-color;
+    }
+
+    .products{
+        h2{
+            font-size: 18px;
+        }
+        span{
+            color: $dark-grey-color;
+            font-size: 24px;
+        }
+    }
+
+    .wp-element-button{
+        position: relative;
+        background-color: $dark-grey-color;
+        color: white;
+        padding: 15px 60px;
+        font-size: 16px;
+
+    }
+
+    .woocommerce-loop-product__title{
+        display: flex;
+    }
+}
+
+.bedsheet{
+    .box {
+        background-color: rgba(255, 255, 255, 0.9);
+        position: absolute;
+        padding: 50px 115px;
+        margin: -400px 130px;
+        width: 545px; 
+        height: 338px;
+
+        h2{
+            font-size: 28px;
+        }
+
+        h3{
+            font-size: 28px;
+            color: #7B5136;
+            margin-top: 20px;
+        }
+
+        h4{
+            font-size: 16px;
+            color: #7B5136;
+            text-decoration: line-through;
+            position: absolute;
+            margin: -25px 110px;
+        }
+
+        p{
+            font-size: 16px;
+            font-family: 'Roboto-Light';
+            margin-top: 20px;
+        }
+    }
+
+    .wp-element-button {
+        margin: -170px 245px;
+    }
+}
