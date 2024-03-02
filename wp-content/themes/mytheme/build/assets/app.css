@@ -486,6 +486,106 @@ main ul.products li.product .add_to_cart_button {
   line-height: 40px;
   border-radius: 3px;
 }
+.woocommerce-breadcrumb {
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.09px;
+  color: #323334;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.woocommerce-breadcrumb a {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.09px;
+  color: #323334;
+  text-decoration: none;
+}
+.member-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 265px;
+  background-color: #DCE1DA;
+}
+.member-banner .member-text {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 44.53px;
+  color: #323334;
+  padding-bottom: 25px;
+}
+.member-banner .setting-banner-text {
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 44.53px;
+  color: #323334;
+  padding-bottom: 25px;
+}
+.member-banner .no-member-text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.09px;
+  color: #323334;
+}
+.woocommerce-result-count {
+  display: none;
+}
+.woocommerce-ordering {
+  display: none;
+}
+.shop-page-container {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.shop-page-container .filter-div {
+  width: 30%;
+  height: auto;
+  margin-left: 10px;
+  background-color: purple;
+}
+.shop-page-container .products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  margin-left: 50px;
+}
+.shop-page-container .products .product {
+  list-style: none;
+  margin: 20px;
+}
+.shop-page-container .products .product img {
+  width: 306px;
+  height: 365px;
+}
+.shop-page-container .products .product .woocommerce-LoopProduct-link {
+  text-decoration: none;
+  width: 229px;
+  height: 90px;
+}
+.shop-page-container .products .product .woocommerce-LoopProduct-link h2 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.09px;
+  color: #323334;
+}
+.shop-page-container .products .product .woocommerce-LoopProduct-link span {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28.13px;
+}
+.shop-page-container .products .product .woocommerce-LoopProduct-link .button {
+  display: none;
+}
 @media (min-width: 768px) {
   ul.products.columns-3 {
     display: grid;
@@ -497,6 +597,9 @@ main ul.products li.product .add_to_cart_button {
     width: calc(33.333% - 20px);
   }
 }
+body {
+  color: #323334;
+}
 .services {
   font-family: "Roboto-Bold";
   font-size: 12px;
@@ -507,11 +610,81 @@ main ul.products li.product .add_to_cart_button {
   padding: 10px;
 }
 .services .services-content {
-  padding: 10px 140px;
+  padding: 10px 140px 30px 140px;
 }
 .services .money-back {
   margin-top: -6px;
 }
 .services .services-text {
   opacity: 0.5;
+}
+.newsletter {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 40px 60px 40px;
+}
+.newsletter h2 {
+  font-family: "Roboto-Bold";
+  font-size: 28px;
+}
+.newsletter p {
+  font-family: "Roboto-Regular";
+  font-size: 24px;
+}
+.newsletter button {
+  background-color: #323334;
+  border: none;
+  padding: 12px 30px 10px 30px;
+}
+.newsletter input {
+  padding: 12px 150px 13px 20px;
+  margin: 0;
+  float: left;
+  border: 1px solid #323334;
+}
+.hot-deals {
+  background-color: rgba(219, 208, 204, 0.8);
+  border: 1px solid;
+  box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.25);
+}
+.hot-deals h3 {
+  font-size: 22px;
+  margin: 100px 0px 30px 0px;
+}
+.hot-deals h2 {
+  font-size: 48px;
+  color: #A86A3D;
+}
+.wp-element-button {
+  font-family: "Roboto-Bold";
+  background-color: transparent;
+  color: #323334;
+  position: absolute;
+  font-size: 14px;
+  border: 1px solid #323334;
+  margin-top: 30px;
+}
+.two-products-column {
+  padding: 20px 40px;
+  color: #323334;
+  font-family: "Roboto-Bold";
+}
+.two-products-column img {
+  margin-top: 10px;
+}
+.two-products-column h2 {
+  padding-top: 100px;
+  font-size: 28px;
+}
+.two-products-column .col-item-1 {
+  background-color: #FAFAFA;
+  display: flex;
+}
+.two-products-column .col-item-2 {
+  background-color: #EAE9E7;
+  display: flex;
+}
+.two-products-column .col-item-2 h2 {
+  width: 50%;
+  margin-top: -23px;
 }
