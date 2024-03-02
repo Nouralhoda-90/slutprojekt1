@@ -497,3 +497,21 @@ main ul.products li.product .add_to_cart_button {
     width: calc(33.333% - 20px);
   }
 }
+.services {
+  font-family: "Roboto-Bold";
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+}
+.services .services-icon {
+  padding: 10px;
+}
+.services .services-content {
+  padding: 10px 140px;
+}
+.services .money-back {
+  margin-top: -6px;
+}
+.services .services-text {
+  opacity: 0.5;
+}
