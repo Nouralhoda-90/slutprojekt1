@@ -6,7 +6,10 @@
 @import "./header";
 @import "./footer";
 @import "./cart";
-@import "./product";
+
 @import "./checkout";
 @import "./listing";
 @import "./layout";
+@import "./home";
+
+@import "_product-page.scss";
