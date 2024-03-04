@@ -4,13 +4,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-//Initialize theme
 require_once(get_template_directory() . "/init.php");
-require_once("shortcodes.php");
-require_once("listing-hooks.php");
-require_once("checkout-hooks.php");
-
-
+//test
 /**
  * support Woocommerce function
  */
