@@ -3,6 +3,14 @@ $footer-secondary-background-color: #222222;;
 
 $primary-font-color: black;
 $secondary-font-color: #FFFFFF;
+// Define custom colors using provided variables
+$custom-primary-background-color: #DCE1DA;
+$custom-secondary-background-color: #FFF9E5;
+$custom-tertiary-background-color: #FAF4F4;
+$custom-footer-line-color: #D9D9D9;
+$custom-primary-font-color: black;
+$custom-secondary-font-color: #FFFFFF;
+$custom-tertiary-font-color: #B88E2F;
 
 $globle_color: red;
 $tertiary-font-color: #B88E2F;
@@ -10,7 +18,7 @@ $secondary-background-color: #FFF9E5;
 $tertiary-background-color: #FAF4F4;
 $footer-line-color: #D9D9D9;
 $product-color-1: #816DFA;
-$product-color-2: black;
+
 $product-color-3: #CDBA7B;
 
 $primary-background-color:#FFFFFF;
@@ -20,7 +28,6 @@ $primary-background-color: FFFFFF;
 $primary-text-color: #323334;
 //GLOBAL
 $content-width: calc(100% - 154px);
-$dark-grey-color : #323334;
 
 //FONTS
 @font-face {
@@ -47,6 +54,12 @@ $dark-grey-color : #323334;
     font-weight: 300;
   }
 
+  // Define custom font families using provided variables
+$custom-regular-font: 'Roboto-Regular';
+$custom-medium-font: 'Roboto-Medium';
+$custom-light-font: 'Roboto-Light';
+$custom-bold-font: 'Roboto-Bold';
+
   $regular-font: 'Roboto-Regular';
   $medium-font: 'Roboto-Medium';
   $light-font: 'Roboto-Light';
@@ -56,7 +69,6 @@ $dark-grey-color : #323334;
 $header-border-lines: #2a2b2d;
 $primary-font-color: #23272b;
 $background-color: #e78e8e;
-$white-color: #ffffff;
 
 /*FOOTER*/
 $footer-text-primary:#FFFFFF80;
@@ -64,11 +76,86 @@ $footer-text-secondary: #fff;
 $footer-background-color-primary: #323334;
 $footer-background-color-secondary:#222222;
 
+// Define custom font families using provided variables
+$custom-regular-font: 'Roboto-Regular';
+$custom-medium-font: 'Roboto-Medium';
+$custom-light-font: 'Roboto-Light';
+$custom-bold-font: 'Roboto-Bold';
 
-/// SINGLE PRODUCT
-$product-color: #323334;
-$product-size-medium: 18px;
-$product-weight-small: 300;
-$product-weight-medium: 500;
-$product-font-size-medium: 16px;
-$product-font-size-large:28px;
+// Apply custom font families to your styles
+.p-text1, .p-text2, .p-text3 {
+  font-family: $custom-regular-font; // Use the regular font
+}
+
+// Define custom content width
+$content-width: calc(100% - 154px);
+
+// Apply custom content width to the div
+.custom-div {
+  width: $content-width;
+}
+
+// Define custom font faces
+@font-face {
+  font-family: $custom-regular-font;
+  src: url('../fonts/roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: $custom-medium-font;
+  src: url('../fonts/roboto/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: $custom-bold-font;
+  src: url('../fonts/roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: $custom-light-font;
+  src: url('../fonts/roboto/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+
+// Define custom font faces
+@font-face {
+  font-family: $custom-regular-font;
+  src: url('../fonts/roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: $custom-medium-font;
+  src: url('../fonts/roboto/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: $custom-bold-font;
+  src: url('../fonts/roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: $custom-light-font;
+  src: url('../fonts/roboto/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+// Apply custom font faces to the text elements
+.p-text1, .p-text2, .p-text3 {
+  font-family: $custom-regular-font;
+}
+
+// Define colors using provided variables
+$product-background-color: #C4C4C4;
+
+// Define font colors
+$product-font-color: #323334;
+
+// Define spacing
+$product-spacing: 20px;

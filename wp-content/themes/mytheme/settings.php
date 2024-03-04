@@ -249,18 +249,18 @@ function mytheme_add_settings_init()
     //----------------------------
     register_setting(
         "butik",
-        "store_shop_hero_info"
+        "shortcode_shop_info"
     );
 
     add_settings_field(
-        "store_shop_hero_info",       //id
-        "Shop hero info",             //title(will be shown on setting-butik page)
+        "shortcode_shop_info",       //id
+        "Shop  info",             //title(will be shown on setting-butik page)
         "mytheme_section_setting",    //callback function
         "butik",                      //page
         "butik_general",              //section
         array(                        //multiple parameter
             "option_name" => "store_shop_hero_info",
-            "option_type" => "textarea"
+            "option_type" => "text"
         )
     );
 

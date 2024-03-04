@@ -1,0 +1,16 @@
+nav.woocommerce-breadcrumb {
+    text-align: center; /* Center the text horizontally */
+    margin-top: 40px !important; /* Add margin-top */
+}
+
+
+.woocommerce-content {
+    display: flex;
+}
+
+.woocommerce-sidebar {
+    width: 100px; /* Adjust as needed */
+    flex-shrink: 0; /* Sidebar won't shrink */
+    /* Other styles for sidebar */
+}
+
