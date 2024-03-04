@@ -834,3 +834,66 @@ body {
 .bedsheet .wp-element-button {
   margin: -170px 245px;
 }
+#breadcrumbs {
+  display: flex;
+  justify-content: center;
+  margin: 12px;
+  text-decoration: none;
+  font-size: 19px;
+}
+.summary.entry-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  float: right;
+  width: 32%;
+  flex-direction: column;
+}
+.summary.entry-summary .product_title.entry-title {
+  margin-top: 60px;
+}
+.product_meta {
+  display: none;
+}
+.woocommerce-product-gallery {
+  display: none;
+}
+.attachment-full size-full {
+  padding-left: 20px;
+  padding-top: 60px;
+  width: 10px;
+}
+.attachment-full size-full:nth-child(2) {
+  padding-left: 30px;
+}
+.attachment-full size-full:nth-child(1) {
+  padding-left: 79px;
+  width: 50%;
+}
+.tabs wc-tabs {
+  display: none;
+}
+.woocommerce-Tabs-panel woocommerce-Tabs-panel {
+  display: none;
+}
+#tab-description {
+  background-color: #F0EFED;
+  width: 60%;
+}
+.product_title.entry-title {
+  margin-top: 60px;
+  font-size: "Roboto-Regular";
+  font-weight: 500;
+}
+.price {
+  font-size: 24px;
+  font-weight: 500;
+}
+.miniature-image {
+  display: block;
+  margin-top: 10px;
+  width: 53px;
+  height: 72px;
+  border: 1px solid #323334;
+  margin-bottom: 30px;
+}
