@@ -207,28 +207,3 @@ function display_subcategory_details( $atts, $content = null ) {
 add_shortcode( 'display_subcategory_details', 'display_subcategory_details' );
 
 
-
-
-function mytheme_woocommerce_template_loop_product_thumbnail(){
-    echo '<div class="image-frame">';
-
-    global $product;
-    if($product->is_on_sale()){
-        echo '<span class="onsale"> Rea </span>';
-    }
-    $categories = $product->get_category_ids();
-    foreach($categories as $category){
-        $term = get_term_by('id', $category, 'product_cat');
-
-        if($term->name == 'Nyheter'){
-            echo '<span class="new"> Nyhet </span>';
-            break;
-        }
-    }
-    
-   
-    echo woocommerce_get_product_thumbnail();
-    echo '</div>';
-}
-
-add_action('woocommerce_before_shop_loop_item_title', 'mytheme_woocommerce_template_loop_product_thumbnail');
