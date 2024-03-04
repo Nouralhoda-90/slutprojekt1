@@ -1,0 +1,59 @@
+.checkout {
+    padding: 20px;
+    
+    form.checkout {
+        .col2-set {
+            display: flex;
+            justify-content: space-between;
+            
+            .col-1, .col-2 {
+                width: 48%;
+                
+                // Adjustments for billing and shipping fields
+                .woocommerce-billing-fields, .woocommerce-shipping-fields {
+                    padding: 10px;
+                    background-color: $secondary-background-color;
+                    
+                    // Field labels
+                    label {
+                        color: $primary-font-color;
+                    }
+                    
+                    // Input fields
+                    input[type="text"], select {
+                        background-color: $primary-background-color;
+                        color: $primary-font-color;
+                        border: 1px solid $footer-line-color;
+                        padding: 8px;
+                        width: 100%;
+                        margin-bottom: 10px;
+                        
+                        &:focus {
+                            outline: none;
+                            border-color: $globle_color;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Order review section
+        #order_review {
+            background-color: $secondary-background-color;
+            padding: 20px;
+            
+            h3 {
+                color: $primary-font-color;
+            }
+        }
+    }
+}
+
+
+.wp-block-woocommerce-checkout-order-summary-subtotal-block,
+.wp-block-woocommerce-checkout-order-summary-fee-block,
+.wp-block-woocommerce-checkout-order-summary-discount-block,
+.wp-block-woocommerce-checkout-order-summary-shipping-block,
+.wc-block-components-totals-wrapper {
+    margin-right: 30px;
+}
