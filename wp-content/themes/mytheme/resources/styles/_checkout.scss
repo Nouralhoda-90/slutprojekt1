@@ -1,59 +1,82 @@
 .checkout {
-    padding: 20px;
-    
-    form.checkout {
-        .col2-set {
-            display: flex;
-            justify-content: space-between;
-            
-            .col-1, .col-2 {
-                width: 48%;
-                
-                // Adjustments for billing and shipping fields
-                .woocommerce-billing-fields, .woocommerce-shipping-fields {
-                    padding: 10px;
-                    background-color: $secondary-background-color;
-                    
-                    // Field labels
-                    label {
-                        color: $primary-font-color;
-                    }
-                    
-                    // Input fields
-                    input[type="text"], select {
-                        background-color: $primary-background-color;
-                        color: $primary-font-color;
-                        border: 1px solid $footer-line-color;
-                        padding: 8px;
-                        width: 100%;
-                        margin-bottom: 10px;
-                        
-                        &:focus {
-                            outline: none;
-                            border-color: $globle_color;
-                        }
-                    }
-                }
-            }
+    // Set the font family, size, and color for the form
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+
+    // Adjust the width of the form
+    max-width: 800px;
+    margin: 0 auto;
+
+    // Style the customer details section
+    #customer_details {
+        display: flex;
+        justify-content: space-between;
+
+        .custom-col-1,
+        .custom-col-2 {
+            width: 48%; // Adjust the width of each column
         }
-        
-        // Order review section
-        #order_review {
-            background-color: $secondary-background-color;
-            padding: 20px;
-            
-            h3 {
-                color: $primary-font-color;
+    }
+
+    // Style the order review section
+    .custom-order-and-checkout {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+
+        // Style the heading
+        h3#custom_order_review_heading {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #555;
+        }
+
+        // Style the review order table
+        .woocommerce-checkout-review-order {
+            border: 1px solid #ddd;
+            padding: 10px;
+
+            th,
+            td {
+                padding: 5px;
+                border-bottom: 1px solid #ddd;
             }
         }
     }
-}
+
+    
+    }
 
 
-.wp-block-woocommerce-checkout-order-summary-subtotal-block,
-.wp-block-woocommerce-checkout-order-summary-fee-block,
-.wp-block-woocommerce-checkout-order-summary-discount-block,
-.wp-block-woocommerce-checkout-order-summary-shipping-block,
-.wc-block-components-totals-wrapper {
-    margin-right: 30px;
-}
+    .components-button {
+        // Base styles for the button
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      
+        // Button text styles
+        .wc-block-components-button__text {
+          font-size: 16px;
+          font-weight: bold;
+        }
+      
+        // Button hover styles
+        &:hover {
+          background-color: #a6eba4;
+        }
+      
+        // Button focus styles
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+        }
+      
+        // Button active styles
+        &:active {
+          transform: translateY(1px);
+        }
+      }
+      

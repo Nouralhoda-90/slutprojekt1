@@ -14,3 +14,42 @@ margin-left: 80px;}
   margin-top: 30px;
 }
 .cutom-price {margin-top: 20px;}
+
+
+
+
+/* Styles for the custom filter-sort container */
+.custom-filter-sort-container {
+  display: flex;
+margin-top: 00px;
+justify-content: center;
+}
+
+.filter-sort {
+  display: flex; /* Use flexbox for the icon and text */
+   
+}
+
+.filter-icon {
+  width: 24px; /* Adjust the width of the icon */
+  height: 24px; /* Adjust the height of the icon */
+
+}
+
+.filter-text {
+  margin: 0; /* Remove default margin */
+  font-family: 'Roboto'; /* Use Roboto font */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+  color: #323334;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust the height as needed */
+}

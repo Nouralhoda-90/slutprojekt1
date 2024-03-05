@@ -15,37 +15,22 @@ function mytheme_add_woocommerce_support()
 }
 add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
 
-/**
- * change checkout button text
- */
-add_filter('woocommerce_proceed_to_checkout', 'customize_checkout_button_text');
-function customize_checkout_button_text()
-{
-    return 'Check Out';
+function enqueue_custom_scripts() {
+    // Enqueue jQuery from WordPress core
+    wp_enqueue_script('jquery');
+
+    // Enqueue jQuery UI script
+    wp_enqueue_script('jquery-ui-core');
+    wp_enqueue_script('jquery-ui-datepicker');
+
+    // Enqueue custom JavaScript file for checkout
+    wp_enqueue_script('custom-checkout-script', get_template_directory_uri() . '/resources/js/custom-checkout.js', array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), false, true);
+
+    // Enqueue custom UI script
+    wp_enqueue_script('custom-ui-script', get_template_directory_uri() . '/resources/js/ui.js', array('jquery'), '1.0', true);
 }
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
-
-
-function display_advantages_shortcode() {
-    ob_start(); ?>
-
-    <div class="advantages">
-        <div class="advantage">
-            <span class="icon"><?php echo file_get_contents( get_template_directory_uri() . '/resources/images/shipping.svg' ); ?></span>
-            <span class="text">FREE SHIPPING</span>
-        </div>
-        <div class="advantage">
-            <span class="icon"><?php echo file_get_contents( get_template_directory_uri() . '/resources/images/money-back.svg' ); ?></span>
-            <span class="text">100% MONEY BACK</span>
-        </div>
-        <div class="advantage">
-            <span class="icon"><?php echo file_get_contents( get_template_directory_uri() . '/resources/images/support.svg' ); ?></span>
-            <span class="text">SUPPORT 24/7</span>
-        </div>
-    </div>
-    <?php
-    return ob_get_clean();
-}
 
 // Override the WooCommerce breadcrumb function
 function my_custom_woocommerce_breadcrumb( $args = array() ) {
@@ -206,4 +191,19 @@ function display_subcategory_details( $atts, $content = null ) {
 // Register shortcode
 add_shortcode( 'display_subcategory_details', 'display_subcategory_details' );
 
+
+
+
+// Create a hook to add a filter-sort line below the product title
+function custom_filter_sort_line() {
+    // Output the filter-sort line HTML
+    echo '<div class="custom-filter-sort-container"> 
+        <div class="filter-sort"> 
+            <img class="filter-icon" src="' . esc_url( get_template_directory_uri() ) . '/resources/images/filter.png">
+            <p class="filter-text"> FILTER & SORT</p>
+        </div>
+    </div>';
+}
+
+add_action('woocommerce_before_main_content', 'custom_filter_sort_line' );
 
