@@ -14,28 +14,7 @@ function update_cart_count_ajax() {
     wp_die();
 }
 
-// ------------     CART HOOKS         -------------------- //
-add_action('woocommerce_cart_totals_before_order_total', 'add_custom_inputs_above_subtotal');
 
-function add_custom_inputs_above_subtotal() {
-    ?>
-    <div class="custom-inputs">
-        <div class="discount-code">
-            <p>ADD A DISCOUNT CODE</p>
-            <input type="text" name="discount_code">
-            <button>ADD</button>
-        </div>
-
-        <div class="login-offers">
-            <p>Log in to use your member offers.</p>
-            <button class="log-in-btn">LOG IN</button>
-        </div>
-    </div>
-    <?php
-}
-
-//trying to remove the coupon code form
-remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 
 //changing the proceed to checkout text on the button to Continue to checkout
 add_filter( 'woocommerce_cart_totals_after_order_total', 'change_checkout_button_text' );
