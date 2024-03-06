@@ -47,14 +47,15 @@ margin-left: 90px;}
 /* Styles for the custom filter-sort container */
 .custom-filter-sort-container {
   display: flex;
-margin-top: 230px;
+margin-top: 280px;
 
-margin-right:300px;
+margin-right:330px;
 }
 
 .filter-sort {
-  display: flex; /* Use flexbox for the icon and text */
-  width: 200px
+/* Use flexbox for the icon and text */
+  width: 200px;
+  margin-top: 20px;
 }
 
 .filter-icon img{

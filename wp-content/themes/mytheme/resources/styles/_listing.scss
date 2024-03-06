@@ -9,16 +9,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+ 
  
 }
 .woocommerce-main-content {
   flex: 1;
   max-width:900px;
-  margin-left: 190px;
-   margin-top: 10px;
+  margin-left: 169px;
+   margin-top: 30px;
    
-}
+
 
 .products {
   display: flex;
@@ -41,11 +41,8 @@
       
   }
 }
-
-#lazy-load-button {
-  margin-top: 20px; // Adjust as needed
-  text-align: center;
 }
+
 
 // // Apply custom font families to your product list
 // .products {
@@ -145,5 +142,4 @@ margin-left: 330px;
   display: flex;
   width: 100%;
   height: auto;
-  margin-top: 30px;
-}
+margin-bottom: 30px;}
