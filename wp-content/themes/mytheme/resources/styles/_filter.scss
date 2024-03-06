@@ -1,6 +1,6 @@
 
-.woocommerce-sidebar{margin-top: 200px;
-margin-left: 80px;}
+.woocommerce-sidebar{margin-top: 0px;
+margin-left: 90px;}
 
 
 .custom-filter{
@@ -21,23 +21,24 @@ margin-left: 80px;}
 /* Styles for the custom filter-sort container */
 .custom-filter-sort-container {
   display: flex;
-margin-top: 00px;
-justify-content: center;
+margin-top: 230px;
+
+margin-right:300px;
 }
 
 .filter-sort {
   display: flex; /* Use flexbox for the icon and text */
-   
+  width: 200px
 }
 
-.filter-icon {
-  width: 24px; /* Adjust the width of the icon */
-  height: 24px; /* Adjust the height of the icon */
-
+.filter-icon img{
+  width: 20px; /* Adjust the width of the icon */
+  height: 20px; /* Adjust the height of the icon */
+ 
 }
 
 .filter-text {
-  margin: 0; /* Remove default margin */
+  /* Remove default margin */
   font-family: 'Roboto'; /* Use Roboto font */
   font-style: normal;
   font-weight: 400;
@@ -45,11 +46,36 @@ justify-content: center;
   line-height: 19px;
   text-transform: uppercase;
   color: #323334;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 .header-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ 
+  width: 300px;
   height: 100px; /* Adjust the height as needed */
+}
+.sorting-options {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  cursor: pointer;
+  top: 152%;
+margin-left: 28px;
+  background-color: #f1f8f2;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  z-index: 1000;
+
+  a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
 }

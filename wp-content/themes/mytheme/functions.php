@@ -1,4 +1,7 @@
 <?php
+require_once('sorteringfilter.php');
+
+
 
 if (!defined('ABSPATH')) {
     exit;
@@ -15,21 +18,6 @@ function mytheme_add_woocommerce_support()
 }
 add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
 
-function enqueue_custom_scripts() {
-    // Enqueue jQuery from WordPress core
-    wp_enqueue_script('jquery');
-
-    // Enqueue jQuery UI script
-    wp_enqueue_script('jquery-ui-core');
-    wp_enqueue_script('jquery-ui-datepicker');
-
-    // Enqueue custom JavaScript file for checkout
-    wp_enqueue_script('custom-checkout-script', get_template_directory_uri() . '/resources/js/custom-checkout.js', array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), false, true);
-
-    // Enqueue custom UI script
-    wp_enqueue_script('custom-ui-script', get_template_directory_uri() . '/resources/js/ui.js', array('jquery'), '1.0', true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
 
 // Override the WooCommerce breadcrumb function
@@ -153,13 +141,14 @@ function custom_unique_div_shortcode( $atts, $content = null ) {
     // Start output buffering
     ob_start(); ?>
 
-    <div class="custom-div <?php echo esc_attr( $atts['class'] ); ?>">
-        <div class="inner-div">
-            <p class="p-text1">Member Exclusive</p>
-            <p class="p-text2">15% off everything + extra 100:- off for plus status</p>
-            <p class="p-text3">Not a member? Join now to shop.</p>
-        </div>
+<div class="custom-div <?php echo esc_attr( $atts['class'] ); ?>">
+    <div class="inner-div">
+        <p class="p-text1">Member Exclusive</p>
+        <p class="p-text2">15% off everything + extra 100:- off for plus status</p>
+        <p class="p-text3">Not a member? <a href="#">Join now to shop</a>.</p>
     </div>
+</div>
+
 
     <?php
     // Return the buffered output
@@ -194,16 +183,137 @@ add_shortcode( 'display_subcategory_details', 'display_subcategory_details' );
 
 
 
-// Create a hook to add a filter-sort line below the product title
-function custom_filter_sort_line() {
-    // Output the filter-sort line HTML
-    echo '<div class="custom-filter-sort-container"> 
-        <div class="filter-sort"> 
-            <img class="filter-icon" src="' . esc_url( get_template_directory_uri() ) . '/resources/images/filter.png">
-            <p class="filter-text"> FILTER & SORT</p>
-        </div>
-    </div>';
+
+
+
+
+
+
+
+function my_theme_enqueue_scripts()
+{
+    // Enqueue your app.js file
+    wp_enqueue_script("mytheme_app", get_template_directory_uri() . "/resources/js/app.js", array('jquery'), '1.0', true);
+
+    // Localize your script with the appropriate AJAX URL and nonce
+    wp_localize_script('mytheme_app', 'ajax_params', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('mytheme_app')
+    ));
+}
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_scripts');
+
+
+
+add_action('init', function () {
+    remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 12);
+    add_action('woocommerce_before_shop_loop_item_title', 'custom_woocommerce_template_loop_product_thumbnail', 12);
+});
+
+if (!function_exists('custom_woocommerce_template_loop_product_thumbnail')) {
+    function custom_woocommerce_template_loop_product_thumbnail()
+    {
+        echo custom_woocommerce_get_product_thumbnail();
+    }
 }
 
-add_action('woocommerce_before_main_content', 'custom_filter_sort_line' );
+if (!function_exists('custom_woocommerce_get_product_thumbnail')) {
+    function custom_woocommerce_get_product_thumbnail($size = 'shop_catalog')
+    {
+        global $post, $woocommerce;
+        $output = '';
 
+        if (has_post_thumbnail()) {
+            $src = get_the_post_thumbnail_url($post->ID, $size);
+            $output .= '<img class="lazy" src="your-placeholder-image.png" data-src="' . $src . '" data-srcset="' . $src . '" alt="Lazy loading image">';
+        } else {
+            $output .= wc_placeholder_img($size);
+        }
+
+        return $output;
+    }
+}
+
+
+
+// AJAX action to load more products
+add_action('wp_ajax_mytheme_load_more_products', 'mytheme_load_more_products');
+add_action('wp_ajax_nopriv_mytheme_load_more_products', 'mytheme_load_more_products');
+
+function mytheme_load_more_products()
+{
+    // Verify nonce for security
+    check_ajax_referer('mytheme_lazy_load_nonce', 'nonce');
+
+    // Get the page number from the AJAX request
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+    // Define arguments for querying more products
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => 12, // Adjust the number of products per page as needed
+        'paged'          => $page,
+    );
+
+    // Query more products
+    $query = new WP_Query($args);
+
+    // Start output buffering
+    ob_start();
+
+    // Loop through and display products
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            wc_get_template_part('content', 'product');
+        }
+    }
+
+    // Reset post data
+    wp_reset_postdata();
+
+    // Get the buffered output
+    $output = ob_get_clean();
+
+    // Send the HTML markup of the new products in the AJAX response
+    echo $output;
+
+    // Ensure the AJAX request completes
+    wp_die();
+}
+
+
+
+function enqueue_custom_scripts() {
+    // Enqueue your JavaScript file with ajaxurl as a dependency
+    wp_enqueue_script('custom-script', get_template_directory_uri() . '/resources/js/app.js', array('jquery'), false, true);
+
+    // Pass ajaxurl to the script
+    wp_localize_script('custom-script', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+
+/**
+ * Apply free shipping automatically when the subtotal is $1000 or more
+ */
+function apply_free_shipping_based_on_subtotal( $rates, $package ) {
+    // Get the cart subtotal
+    $subtotal = WC()->cart->get_subtotal();
+
+    // Check if the subtotal is $1000 or more
+    if ( $subtotal >= 1000 ) {
+        // Loop through available shipping rates
+        foreach ( $rates as $rate_key => $rate ) {
+            // Check if the shipping method is flat rate
+            if ( 'flat_rate' === $rate->method_id ) {
+                // Set the shipping cost to zero
+                $rates[$rate_key]->cost = 0;
+                break; // Exit the loop since we found the flat rate
+            }
+        }
+    }
+
+    return $rates;
+}
+add_filter( 'woocommerce_package_rates', 'apply_free_shipping_based_on_subtotal', 10, 2 );

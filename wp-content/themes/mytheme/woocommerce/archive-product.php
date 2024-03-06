@@ -9,14 +9,17 @@ get_header( 'shop' );
 do_action( 'woocommerce_before_main_content' );
 ?>
 
-<div class="header-wrapper">
-
+<div class="woocommerce-wrap">
     <header class="woocommerce-products-header">
-        <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-            <h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
-        <?php endif; ?>
+        <!-- Breadcrumb -->
+        <?php
+        /**
+         * Hook: woocommerce_archive_description.
+         */
+        do_action( 'woocommerce_archive_description' );
+        echo do_shortcode('[custom_filter_sort_line]');
+        ?>
     </header>
-</div>
 
     <div class="woocommerce-content">
         <div class="woocommerce-sidebar">
@@ -31,39 +34,64 @@ do_action( 'woocommerce_before_main_content' );
         </div>
 
         <div class="woocommerce-main-content">
-            <ul class="products">
+            <ul class="products" id="product-list">
                 <?php
-                // Display notices and product loop
-                if (woocommerce_product_loop()) {
-                    do_action('woocommerce_before_shop_loop');
-                    $loop_counter = 0;
-                    while (have_posts()) {
-                        the_post();
-                        do_action('woocommerce_shop_loop');
-                        // Add a wrapper div for each product
-                        echo '<li class="product-item">';
+                // Display initial 12 products
+                $args = array(
+                    'post_type'      => 'product',
+                    'posts_per_page' => 12,
+                );
+                $query = new WP_Query($args);
+
+                // Loop through and display products
+                if ($query->have_posts()) {
+                    while ($query->have_posts()) {
+                        $query->the_post();
                         wc_get_template_part('content', 'product');
-                        echo '</li>';
-                        $loop_counter++;
-                        if ($loop_counter % 3 === 0 && $loop_counter < 12) {
-                            echo '</ul><ul class="products">';
-                        }
                     }
-                    do_action('woocommerce_after_shop_loop');
-                } else {
-                    do_action('woocommerce_no_products_found');
                 }
+                wp_reset_postdata();
                 ?>
             </ul>
+            <!-- Load More button -->
+            <div id="load-more-container">
+                <button id="load-more-button">Load More Products</button>
+            </div>
         </div>
     </div>
 </div>
-
 <?php
-/**
- * Hook: woocommerce_after_main_content.
- */
-do_action('woocommerce_after_main_content');
-
-get_footer('shop');
+get_footer();
 ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const loadMoreButton = document.getElementById('load-more-button');
+        const productList = document.getElementById('product-list');
+        let nextPage = 2;
+
+        loadMoreButton.addEventListener('click', function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?php echo admin_url('admin-ajax.php'); ?>');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const response = xhr.responseText;
+                    if (response.trim() === '') {
+                        // No more products to load, hide the button
+                        loadMoreButton.style.display = 'none';
+                    } else {
+                        // Append the new products to the product list
+                        productList.insertAdjacentHTML('beforeend', response);
+                        nextPage++;
+                    }
+                } else {
+                    console.error('Request failed. Returned status of ' + xhr.status);
+                }
+            };
+            xhr.onerror = function() {
+                console.error('Request failed');
+            };
+            xhr.send('action=mytheme_load_more_products&page=' + nextPage + '&nonce=<?php echo wp_create_nonce('mytheme_lazy_load_nonce'); ?>');
+        });
+    });
+</script>

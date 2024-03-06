@@ -1,33 +1,72 @@
-
-// Define the width of each product column
-$product-column-width: calc(33.33% - 20px); // Adjust margin between columns
-
-.woocommerce-main-content{
-  margin-top: 420px !important;
-margin-left: 180px!important;
-}
-
-
-// Apply custom font families to your product list
-.products {
+.woocommerce-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
-    font-family: $custom-regular-font;
-   
-    list-style: none;
-    justify-content: space-between;
 }
 
-ul.products{
+.woocommerce-content {
   display: flex;
   flex-wrap: wrap;
-  padding: 0;
-  width: $product-column-width;
+  justify-content: center;
+  gap: 10px;
+ 
+}
+.woocommerce-main-content {
+  flex: 1;
+  max-width:900px;
+  margin-left: 190px;
+   margin-top: 10px;
+   
 }
 
-.product-item{
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   
-  padding-top: 10px;
+
+  .product-item {
+      width: calc(33.33% - 20px); // Adjust the width according to your design
+      margin-bottom: 60px; // Adjust the margin between products
+      box-sizing: border-box;
+
+      // Ensure equal height for all product items
+      display: flex;
+      flex-direction: column;
+
+      // Style each product item
+      
+  }
 }
+
+#lazy-load-button {
+  margin-top: 20px; // Adjust as needed
+  text-align: center;
+}
+
+// // Apply custom font families to your product list
+// .products {
+  
+//     font-family: $custom-regular-font;
+   
+//     list-style: none;
+//     justify-content: space-between;
+// }
+
+// ul.products{
+//   display: flex;
+//   flex-wrap: wrap;
+//   padding: 0;
+//   width: $product-column-width;
+// }
+
+// .product-item{
+  
+//   padding-top: 10px;
+// }
 
 .product-image {
   width: 250px;
@@ -57,27 +96,54 @@ ul.products{
 
 
 
- /*  justify-content: space-between; */
-  li.product{
-      list-style: none;
-      border: 1px solid rgba(0,0,0,0.15);
-      box-shadow: 0, 0, 10px, rgba(0,0,0,0.15);
-      width: calc(25% - 10px);
-      box-sizing: border-box;
-      padding:20px;
-      margin: 5px;
- }
-.products {
-  display: grid;
-  grid-template-columns: repeat(6, 0fr); // Three columns with equal width
+//  /*  justify-content: space-between; */
+//   li.product{
+//       list-style: none;
+//       border: 1px solid rgba(0,0,0,0.15);
+//       box-shadow: 0, 0, 10px, rgba(0,0,0,0.15);
+//       width: calc(25% - 10px);
+//       box-sizing: border-box;
+//       padding:20px;
+//       margin: 5px;
+//  }
+// .products {
+//   display: grid;
+//   grid-template-columns: repeat(6, 0fr); // Three columns with equal width
 
 
-  .product-item {
-      // Style each individual product item
-      height: 400px;
-      padding: 10px;
-      background-color: #ffffff;
+//   .product-item {
+//       // Style each individual product item
+//       height: 400px;
+//       padding: 10px;
+//       background-color: #ffffff;
      
-      &:hover {
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+//       &:hover {
+//           box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+//       }}}
+//listing by filter:
 
+    /* CSS for product container */
+.product-container { display: grid;
+  grid-template-columns: repeat(3, 2fr); // Three columns with equal width
+margin-left: 330px;
+
+}
+
+
+
+.product-row {
+  display: grid;
+//   grid-template-columns: repeat(6, 0fr); /* Adjust margin as needed */
+}
+
+.product-column {
+  display: grid;
+   grid-template-columns: repeat(1, 0fr); // Three columns with equal width
+}
+
+.price {
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+}

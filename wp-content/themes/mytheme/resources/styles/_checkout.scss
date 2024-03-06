@@ -1,52 +1,103 @@
+/* Main checkout form container */
 .checkout {
-    // Set the font family, size, and color for the form
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+  &-columns {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &-column {
+    width: 100%;
+    margin-bottom: 20px;
+
+    @media (min-width: 768px) {
+      width: 50%; /* Two columns on larger screens */
+    }
+  }
+
+  &-section {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
     color: #333;
+  }
 
-    // Adjust the width of the form
-    max-width: 800px;
-    margin: 0 auto;
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
 
-    // Style the customer details section
-    #customer_details {
-        display: flex;
-        justify-content: space-between;
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none; /* Remove default appearance */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23333" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+  }
 
-        .custom-col-1,
-        .custom-col-2 {
-            width: 48%; // Adjust the width of each column
-        }
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+
+    &:hover {
+      background-color: #0056b3;
     }
+  }
+}
 
-    // Style the order review section
-    .custom-order-and-checkout {
-        margin-top: 20px;
-        padding: 20px;
-        background-color: #f9f9f9;
+/* Custom order review section */
+.custom-order-and-checkout {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-top: 20px;
 
-        // Style the heading
-        h3#custom_order_review_heading {
-            margin-bottom: 10px;
-            font-size: 20px;
-            color: #555;
-        }
+  h3 {
+    font-size: 1.5rem;
+    color: #333;
+  }
 
-        // Style the review order table
-        .woocommerce-checkout-review-order {
-            border: 1px solid #ddd;
-            padding: 10px;
+  #custom_order_review_heading {
+    margin-bottom: 10px;
+  }
+}
 
-            th,
-            td {
-                padding: 5px;
-                border-bottom: 1px solid #ddd;
-            }
-        }
-    }
+/* Shipping details */
+.checkout-shipping {
+  .checkout-section {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+}
 
-    
-    }
+/* Custom checkout button */
+#custom_checkout_button {
+  display: block;
+  margin-top: 20px;
+}
+
 
 
     .components-button {
