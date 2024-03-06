@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 <div class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
 
-	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
+	<?php do_action('woocommerce_before_cart_totals'); ?>
 
     <?php if (wc_coupons_enabled()) { ?>
         <p><?php  esc_html_e('ADD A DISCOUNT CODE' , 'woocommerce' ); ?></p>
@@ -48,18 +48,18 @@ defined( 'ABSPATH' ) || exit;
 
 
 
-	<h2><?php esc_html_e( 'Cart totals', 'woocommerce' ); ?></h2>
+	<h2><?php esc_html_e('Cart totals', 'woocommerce'); ?></h2>
 
 	<table cellspacing="0" class="shop_table shop_table_responsive">
 
 
 		<tr class="cart-subtotal">
-			<th><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
-			<td data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
+			<th><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
+			<td data-title="<?php esc_attr_e('Subtotal', 'woocommerce'); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
 
-		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+		<?php foreach (WC()->cart->get_coupons() as $code => $coupon) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
 				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
 			<td data-title="<?php echo esc_attr( wc_cart_totals_coupon_label( $coupon, false ) ); ?>">
@@ -73,7 +73,7 @@ defined( 'ABSPATH' ) || exit;
 		    <?php 
               if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) { 
 
-			 do_action( 'woocommerce_cart_totals_before_shipping' ); 
+			 do_action('woocommerce_cart_totals_before_shipping'); 
              if (WC()->cart->total < 1000){
 
                 wc_cart_totals_shipping_html();

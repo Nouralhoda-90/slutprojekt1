@@ -22,11 +22,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 
         <nav class="woocommerce-breadcrumb">
+
             <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('homepage', 'woocommerce'); ?></a>
             <span class="breadcrumb-separator"> / </span>
             <?php esc_html_e('shopping bag', 'woocommerce'); ?>
+			<h2 class="cart_h2"><?php esc_html_e('SHOPPING BAG', 'woocommerce'); ?></h2>
         </nav>
-        <h2 class="cart-h2"><?php esc_html_e('SHOPPING BAG', 'woocommerce'); ?></h2>
+        
 
 
 
@@ -173,7 +175,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							?>
 						</td>
 
-                        
+
 						<td class="product-color-total" data-title="<?php esc_attr_e('Color and Total', 'woocommerce'); ?>">
 							<?php
 							$color = $product->get_attribute('pa_color');

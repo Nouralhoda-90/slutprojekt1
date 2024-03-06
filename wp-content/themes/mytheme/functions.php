@@ -3,6 +3,7 @@ require_once('sorteringfilter.php');
 
 
 
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -317,3 +318,38 @@ function apply_free_shipping_based_on_subtotal( $rates, $package ) {
     return $rates;
 }
 add_filter( 'woocommerce_package_rates', 'apply_free_shipping_based_on_subtotal', 10, 2 );
+
+
+
+
+//-------------------CART---------------------
+
+
+add_filter('gettext', 'change_subtotal_to_order_value', 20, 3);
+function change_subtotal_to_order_value($translated_text, $text, $domain)
+{
+    if ($text === 'Subtotal') {
+        $translated_text = __('Order Value:', 'woocommerce');
+    }
+    return $translated_text;
+}
+
+add_filter('gettext', 'change_shipping_label', 20, 3);
+function change_shipping_label($translated_text, $text, $domain)
+{
+    if ($text === 'Shipping') {
+        $translated_text = __('Shipping:', 'woocommerce');
+    }
+    return $translated_text;
+}
+
+add_filter('gettext', 'change_proceed_to_checkout_text', 20, 3);
+function change_proceed_to_checkout_text($translated_text, $text, $domain)
+{
+    if ($text === 'Proceed to checkout') {
+        $translated_text = __('CONTINUE TO CHECKOUT', 'woocommerce');
+    }
+    return $translated_text;
+}
+
+
