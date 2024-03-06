@@ -1,3 +1,29 @@
+.content-area{
+  padding: 0 0px;
+  padding-bottom: 0px;
+}
+
+
+
+
+.woocommerce .woocommerce-breadcrumb {
+  margin: 0 0 1em;
+  padding: 35px;
+  font-size: $product-size-medium;
+}
+.woocommerce-breadcrumb{
+  display: flex;
+  justify-content: center;
+  
+  a{
+      
+          text-decoration: none;
+        
+          font-size: $product-size-medium;
+  }
+  }
+
+
 
 .woocommerce-sidebar{margin-top: 0px;
 margin-left: 90px;}
