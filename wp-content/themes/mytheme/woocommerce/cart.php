@@ -19,16 +19,11 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
 
+<?php if ( wc_get_page_id( 'CART' ) > 0 && function_exists( 'woocommerce_breadcrumb' ) ) : ?>
+    <?php woocommerce_breadcrumb(); ?>
+<?php endif; ?>
 
-
-        <nav class="woocommerce-breadcrumb">
-
-            <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('homepage', 'woocommerce'); ?></a>
-            <span class="breadcrumb-separator"> / </span>
-            <?php esc_html_e('shopping bag', 'woocommerce'); ?>
-			<h2 class="cart_h2"><?php esc_html_e('SHOPPING BAG', 'woocommerce'); ?></h2>
-        </nav>
-        
+<h2 class="cart-title"><?php esc_html_e( 'SHOPPING BAG', 'woocommerce' ); ?></h2>
 
 
 
