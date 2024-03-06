@@ -1,3 +1,7 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/resources/js/app.js"></script>
+
+
 <?php
 
 /**
@@ -36,6 +40,7 @@ if (post_password_required()) {
 
 	<div class="summary entry-summary">
 		<?php
+
 		/**
 		 * Hook: woocommerce_single_product_summary.
 		 *
@@ -50,17 +55,10 @@ if (post_password_required()) {
 		 */
 		do_action('woocommerce_single_product_summary');
 		?>
+
 	</div>
-	<?php
-	// Check if there are gallery images
-	$attachment_ids = $product->get_gallery_image_ids();
-	if ($attachment_ids) {
-		// Output gallery images
-		foreach ($attachment_ids as $attachment_id) {
-			echo wp_get_attachment_image($attachment_id, 'full');
-		}
-	}
-	?>
+
+	
 
 	<?php
 	/**
@@ -86,5 +84,8 @@ if (post_password_required()) {
 	do_action('woocommerce_after_single_product_summary');
 	?>
 </div>
+<div id="related-products-container"></div>
+<button id="load-more-related-products">Visa fler produkter</button>
+
 
 <?php do_action('woocommerce_after_single_product'); ?>
