@@ -6,6 +6,8 @@ if (!is_admin()) {
 }
 
 //add menu into dashboard settings
+
+
 function mytheme_add_settings()
 {
     add_submenu_page(

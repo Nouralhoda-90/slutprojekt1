@@ -12,11 +12,11 @@
     <?php wp_body_open(); ?>
 
     <header>
-    <div class="upper-header">
-        <div class="column-50">
+    <div class="header1">
+        <div class="first">
             <a href="/"><span class="logo-text">MOODY STORE</span></a>
         </div>
-        <div class="column-50">
+        <div class="first">
            
                     <?php
                      $cart_items_count = WC()->cart->get_cart_contents_count();
@@ -26,13 +26,13 @@
                         'container' => 'nav',
                         'items_wrap' => 
                         '<ul>
-                        <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/Vector.png" alt="Search"></a></li>
-                        <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/account.png" alt="My Account"></a></li>
-                        <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/cartg.png" alt="Cart"></a></li>
-                        <div class="basket-item-count">
-                        <span class="cart-items-count count">
+                                <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/Vector.png" alt="Search"></a></li>
+                                <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/account.png" alt="My Account"></a></li>
+                                <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/cartg.png" alt="Cart"></a></li>
+                        <div class="basket-count">
+                        <span class="cart-count count">
                     
-                        <span class="cart-items-count count">' . $cart_items_count . '</span>
+                        <span class="cart-count count">' . $cart_items_count . '</span>
                             
                         </span>
                     </div>
@@ -47,7 +47,7 @@
             </div>
         
     </div>
-    <div class="lower-header">
+    <div class="header2">
         <?php
         $menu_header = array(
             'theme_location' => 'huvudmeny',

@@ -2,7 +2,7 @@
 
 
 require_once('vite.php');
-require_once('ajax.php');
+
 require_once('settings.php');
 
 function mytheme_enqueue()
@@ -18,6 +18,8 @@ function mytheme_init()
     // add theme support
     add_theme_support('post-thumbnails');
 
+
+    
     // register MENU
     $menu = array(
         'huvudmeny' => 'huvudmeny',
