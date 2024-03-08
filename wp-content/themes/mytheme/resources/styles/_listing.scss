@@ -9,11 +9,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+<<<<<<< Updated upstream
  
+=======
+  gap: 10px;
+>>>>>>> Stashed changes
  
 }
 .woocommerce-main-content {
   flex: 1;
+<<<<<<< Updated upstream
   max-width:900px;
   margin-left: 169px;
    margin-top: 30px;
@@ -64,6 +69,58 @@
   
 //   padding-top: 10px;
 // }
+=======
+  width:1000px;
+  margin-left: 167px;
+   margin-top: 10px;
+   
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  
+
+  .product-item {
+      width: calc(33.33% - 20px); // Adjust the width according to your design
+      margin-bottom: 60px; // Adjust the margin between products
+      box-sizing: border-box;
+
+      // Ensure equal height for all product items
+      display: flex;
+      flex-direction: column;
+
+      // Style each product item
+      
+  }
+}
+>>>>>>> Stashed changes
+
+
+
+// // Apply custom font families to your product list
+// .products {
+  
+//     font-family: $custom-regular-font;
+   
+//     list-style: none;
+//     justify-content: space-between;
+// }
+
+// ul.products{
+//   display: flex;
+//   flex-wrap: wrap;
+//   padding: 0;
+//   width: $product-column-width;
+// }
+
+// .product-item{
+  
+//   padding-top: 10px;
+// }
 
 .product-image {
   width: 250px;
@@ -74,20 +131,107 @@
 
 // // Define the position and size of the product details container
 .product-details {
-  
-  height: 80px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  color: #323334;
+  height: 40px;
  
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 // Style the text inside the product details container
-.product-details h2 {
+.woocommerce-loop-product__title h2{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+ 
+  line-height: 21px;
+  color: #323334;
+ 
+}
+
+
+
+
+//  /*  justify-content: space-between; */
+//   li.product{
+//       list-style: none;
+//       border: 1px solid rgba(0,0,0,0.15);
+//       box-shadow: 0, 0, 10px, rgba(0,0,0,0.15);
+//       width: calc(25% - 10px);
+//       box-sizing: border-box;
+//       padding:20px;
+//       margin: 5px;
+//  }
+// .products {
+//   display: grid;
+//   grid-template-columns: repeat(6, 0fr); // Three columns with equal width
+
+
+//   .product-item {
+//       // Style each individual product item
+//       height: 400px;
+//       padding: 10px;
+//       background-color: #ffffff;
+     
+//       &:hover {
+//           box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+//       }}}
+//listing by filter:
+
+.product-container {
+  width: 900;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr); // Define three rows with equal height
+  margin-left: 320px;
+
+  .product-item {
+   padding-bottom: 30px;
+   margin-top: 20px;
+  }
+  .product-details {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    color: #323334;
+    height: 40px;
+   
+    margin-top: 60px;
+  }
+
+
+ 
+}
+
+
+
+
+.price {
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+
+
+}
+
+li .bedroom {
+  color: red;
+}
+.product-price{
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 21px;
   color: #323334;
+<<<<<<< Updated upstream
 }
 
 
@@ -143,3 +287,7 @@ margin-left: 330px;
   width: 100%;
   height: auto;
 margin-bottom: 30px;}
+=======
+  margin-bottom: 30px;
+}
+>>>>>>> Stashed changes

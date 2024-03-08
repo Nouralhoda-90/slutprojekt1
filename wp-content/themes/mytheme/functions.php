@@ -2,7 +2,10 @@
 require_once('sorteringfilter.php');
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 if (!defined('ABSPATH')) {
     exit;
@@ -22,18 +25,19 @@ add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
 
 
 // Override the WooCommerce breadcrumb function
-function my_custom_woocommerce_breadcrumb( $args = array() ) {
+function my_custom_woocommerce_breadcrumb($args = array())
+{
     $args = wp_parse_args(
         $args,
         apply_filters(
             'woocommerce_breadcrumb_defaults',
             array(
-                'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">', // Change the wrap before HTML
-                'wrap_after'  => '</nav>', // Change the wrap after HTML
-                'before'      => '',
-                'after'       => '',
-                'delimiter'   => '', // Remove default delimiter
-                'home'        => _x( 'home page', 'breadcrumb', 'woocommerce' ),
+                'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">',
+                'wrap_after' => '</nav>',
+                'before' => '',
+                'after' => '',
+                'delimiter' => '',
+                'home' => _x('home page', 'breadcrumb', 'woocommerce'),
             )
         )
     );
@@ -45,31 +49,69 @@ function my_custom_woocommerce_breadcrumb( $args = array() ) {
     $breadcrumbs[] = '<a href="' . home_url() . '">' . $args['home'] . '</a>';
 
     // Custom breadcrumb items
-    
-    $breadcrumbs[] = '<span>/</span><span>brand</span>';
-    $breadcrumbs[] = '<span>/</span><span>h&amp;m home</span>';
-    $breadcrumbs[] = '<span>/</span><span>bedroom</span>';
+    $breadcrumbs[] = '<span>/</span><a href="' . home_url('/brand') . '">Brand</a>';
+    $breadcrumbs[] = '<span>/</span><a href="' . home_url('/h-and-m-home') . '">H&amp;M Home</a>';
+
+  // Manually set the current category
+$current_category_name = "Bedroom";
+
+// Current page (category name)
+$breadcrumbs[] = '<span>/</span>' . $current_category_name ;
+
 
     // Output the breadcrumb navigation
     echo $args['wrap_before'];
     echo $args['before'];
 
     // Output each breadcrumb item with the delimiter
-    echo implode( '', $breadcrumbs );
+    echo implode('', $breadcrumbs);
 
     echo $args['after'];
     echo $args['wrap_after'];
 }
 
 // Hook into the woocommerce_breadcrumb function
-remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
-add_action( 'woocommerce_before_main_content', 'my_custom_woocommerce_breadcrumb', 20 );
+remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+add_action('woocommerce_before_main_content', 'my_custom_woocommerce_breadcrumb', 20);
 
 
 
-//customized filter
-function custom_categories_filter_shortcode() {
-    ob_start();
+
+// Custom categories filter shortcode with widget registration
+function my_custom_widgets_init()
+{
+    register_sidebar(array(
+        'name' => esc_html__('Custom Sidebar', 'my-moody-studio-theme'),
+        'id' => 'custom-filter',
+        'description' => esc_html__('Add widgets here to appear in your sidebar.', 'my-moody-studio-theme'),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget' => '</section>',
+        'before_title' => '<h2 class="widget-title">',
+        'after_title' => '</h2>',
+    ));
+}
+add_action('widgets_init', 'my_custom_widgets_init');
+
+// Custom categories filter shortcode with widget registration
+function custom_categories_filter_shortcode_with_widget() {
+    // Register custom sidebar widget
+    if (!function_exists('my_custom_widgets_init')) {
+        function my_custom_widgets_init()
+        {
+            
+            register_sidebar(array(
+                'name' => esc_html__('Custom Sidebar', 'my-moody-studio-theme'),
+                'id' => 'custom-filter',
+                'description' => esc_html__('Add widgets here to appear in your sidebar.', 'my-moody-studio-theme'),
+                'before_widget' => '<section id="%1$s" class="widget %2$s">',
+                'after_widget' => '</section>',
+                'before_title' => '<h2 class="widget-title">',
+                'after_title' => '</h2>',
+            ));
+        }
+        add_action('widgets_init', 'my_custom_widgets_init');
+    }
+
     ob_start();
 
     $args = array(
@@ -83,51 +125,111 @@ function custom_categories_filter_shortcode() {
         'hide_empty'   => 0
     );
 
-    $categories = get_categories($args);
-
-    if ($categories) {
-        echo '<ul>';
-        foreach ($categories as $category) {
-            echo '<li><a href="' . get_term_link($category) . '">' . $category->name . '</a></li>';
-        }
-        echo '</ul>';
-?>
-        <div class="custom-filter">
-            <p class="custom-gender">Gender</p>
-            <div class="custom-man">
-                <input type="checkbox" id="myCheckbox1" name="myCheckbox" value="checked"><span class="custom-span1">Man</span>
-
-            </div>
-            <div class="custom-woman">
-                <input type="checkbox" id="myCheckbox2" name="myCheckbox" value="checked"><span class="custom-span2">Woman</span>
-
-            </div>
-
-            <div class="custom-color-filter">
-                <p class="custom-color">Color</p>
-                <div class="custom-color1"> <span class="custom-FFF"></span><span class="custom-a323334"></span><span class="custom-C4C4C4"></span><span class="custom-F2C94C"></span><span class="custom-F2994A"></span><span class="custom-EB5757"></span></div>
-                <div class="custom-color2"> <span class="custom-BB6BD9"></span><span class="custom-a56CCF2"></span><span class="custom-C6FCF97"></span><span class="custom-a219653"></span><span class="custom-a2F80ED"></span><span class="custom-DF1313"></span></div>
-                <div class="custom-color3"> <span class="custom-a770505"></span><span class="custom-a0A5D8B"></span><span class="custom-AD5B12"></span><span class="custom-a4F0E8B"></span><span class="custom-a0A7090"></span><span class="custom-a156008"></span></div>
-            </div>
-
-            <div class="custom-price-filter">
-                <p class="custom-price">Price</p>
-                <div class="custom-price1-1"><input type="checkbox" id="myCheckbox4" name="myCheckbox" value="checked"><span class="custom-span2">0 - 200</span></div>
-                <div class="custom-price1-2"><input type="checkbox" id="myCheckbox5" name="myCheckbox" value="checked"><span class="custom-span2">200 - 500</span></div>
-                <div class="custom-price1-3"><input type="checkbox" id="myCheckbox6" name="myCheckbox" value="checked"><span class="custom-span2">500 - 1000</span></div>
-                <div class="custom-price1-4"><input type="checkbox" id="myCheckbox7" name="myCheckbox" value="checked"><span class="custom-span2">1 000 - 1 500</span></div>
-                <div class="custom-price1-5"><input type="checkbox" id="myCheckbox8" name="myCheckbox" value="checked"><span class="custom-span2">1 500 - 3 000</span></div>
-                <div class="custom-price1-6"><input type="checkbox" id="myCheckbox9" name="myCheckbox" value="checked"><span class="custom-span2">3 000 - 10 000</span></div>
-            </div>
+    
+    // Output the filter chart HTML
+    ?>
+    <div class="custom-filter-chart"> 
+    <div class="related-words">
+         <p class="word">New arrivals</p>
+         <ul>
+             <li id="new">New arrivals</li>
+             </ul>
         </div>
-<?php
-    }
+
+        <div class="related-words">
+           
+        </div>
+        <div class="related-words">
+            <p class="word">Shop by room</p>
+            <ul>
+            <li class="custom-red">Bedroom</li>
+
+                <li>duvet cover sets</li>
+                <li>sheets</li>
+                <li>bedspreads & blankets</li>
+                <li>blankets</li>
+                <li>curtains</li>
+                <li>pillowcases</li>
+                <li>rugs</li>
+                <li>living room</li>
+                <li>child room</li>
+                <li>bathroom</li>
+                <li>Outdoor</li>
+            </ul>
+        </div>
+        <div class="related-words">
+            <p class="word">Shop by concept</p>
+            <ul>
+                <li>Conscious</li>
+                <li>premium quality</li>
+                <li>classic collection</li>
+            </ul>
+        </div>
+    </div>
+    <?php  
+    
+    
+
+    // Output the rest of the filter shortcode content
+    ?>
+    <div class="custom-filter">
+        <div class="custom-gender"><p>Gender</p>
+        <div class="custom-man">
+            <input type="checkbox" id="myCheckbox1" name="myCheckbox" value="checked"><span class="custom-span1">Man</span>
+        </div>
+        <div class="woman">
+                <input type="checkbox" id="myCheckbox2" name="myCheckbox" value="checked"><span class="span2">Woman</span>
+                </div>
+            </div>
+            <div class="custom-color-filter">
+  <p class="custom-color">Color</p>
+  <div class="custom-color-row">
+    <span class="custom-color-circle" style="background-color: #F34;"></span>
+    <span class="custom-color-circle" style="background-color: #323334;"></span>
+    <span class="custom-color-circle" style="background-color: #C4C4C4;"></span>
+    <span class="custom-color-circle" style="background-color: #F2C94C;"></span>
+    <span class="custom-color-circle" style="background-color: #F2994A;"></span>
+    <span class="custom-color-circle" style="background-color: #EB5757;"></span>
+  </div>
+  <div class="custom-color-row">
+    <span class="custom-color-circle" style="background-color: #BB6BD9;"></span>
+    <span class="custom-color-circle" style="background-color: #9CF2;"></span>
+    <span class="custom-color-circle" style="background-color: #C6FCF9;"></span>
+    <span class="custom-color-circle" style="background-color: #219653;"></span>
+    <span class="custom-color-circle" style="background-color: #2F80ED;"></span>
+    <span class="custom-color-circle" style="background-color: #DF1313;"></span>
+  </div>
+  <div class="custom-color-row">
+    <span class="custom-color-circle" style="background-color: #770505;"></span>
+    <span class="custom-color-circle" style="background-color: #0A5D8B;"></span>
+    <span class="custom-color-circle" style="background-color: #AD5B12;"></span>
+    <span class="custom-color-circle" style="background-color: #4F0E8B;"></span>
+    <span class="custom-color-circle" style="background-color: #0A7090;"></span>
+    <span class="custom-color-circle" style="background-color: #156008;"></span>
+  </div>
+</div>
+        <div class="custom-price-filter">
+            <p class="custom-price">Price</p>
+            <div class="custom-price1-1"><input type="checkbox" id="myCheckbox4" name="myCheckbox" value="checked"><span class="custom-span2">0 - 200</span></div>
+            <div class="custom-price1-2"><input type="checkbox" id="myCheckbox5" name="myCheckbox" value="checked"><span class="custom-span2">200 - 500</span></div>
+            <div class="custom-price1-3"><input type="checkbox" id="myCheckbox6" name="myCheckbox" value="checked"><span class="custom-span2">500 - 1000</span></div>
+            <div class="custom-price1-4"><input type="checkbox" id="myCheckbox7" name="myCheckbox" value="checked"><span class="custom-span2">1 000 - 1 500</span></div>
+            <div class="custom-price1-5"><input type="checkbox" id="myCheckbox8" name="myCheckbox" value="checked"><span class="custom-span2">1 500 - 3 000</span></div>
+            <div class="custom-price1-6"><input type="checkbox" id="myCheckbox9" name="myCheckbox" value="checked"><span class="custom-span2">3 000 - 10 000</span></div>
+        </div>
+    </div>
+    <?php
 
     return ob_get_clean();
 }
 
+add_shortcode( 'custom_categories_filter', 'custom_categories_filter_shortcode_with_widget' );
 
-add_shortcode( 'custom_categories_filter', 'custom_categories_filter_shortcode' );
+
+
+
+
+
 
 
 
@@ -157,33 +259,39 @@ function custom_unique_div_shortcode( $atts, $content = null ) {
 }
 add_shortcode( 'custom_unique_div', 'custom_unique_div_shortcode' );
 
+
+
 // Custom function to display subcategory information
-function display_subcategory_details( $atts, $content = null ) {
+function display_subcategory_details($atts, $content = null)
+{
     // Shortcode attributes
-    $atts = shortcode_atts( array(
-        'class' => '', 
-    ), $atts, 'show_details_shortcode' ); 
+    $atts = shortcode_atts(array(
+        'class' => '',
+        'current_category_name' => '', // Attribute to hold current category name
+    ), $atts, 'show_details_shortcode');
 
     // Output HTML
-    ?>
-    <div class="custom-div2 <?php echo esc_attr( $atts['class'] ); ?>">
+    ob_start(); ?>
+    <div class="custom-div2 <?php echo esc_attr($atts['class']); ?>">
         <div class="subcategory-details">
-            <h3 class="h1-text1">BEDROOM</h3>
-            <p class="p-text5">It's easy to transform your bedroom interior with our great selection of accessories.</p> 
+            <h3 class="h1-text1"><?php echo esc_html($atts['current_category_name']); ?></h3>
+            <p class="p-text5">It's easy to transform your be interior with our great selection of accessories.</p>
         </div>
     </div>
     <div class="link">
         <div class="text10"> <span class="models">Models</span> <span class="prod">Products</span> </div>
     </div>
     <?php
+    return ob_get_clean();
 }
 
 // Register shortcode
-add_shortcode( 'display_subcategory_details', 'display_subcategory_details' );
+add_shortcode('display_subcategory_details', 'display_subcategory_details');
 
 
 
 
+<<<<<<< Updated upstream
 
 
 
@@ -237,6 +345,8 @@ if (!function_exists('custom_woocommerce_get_product_thumbnail')) {
 
 
 
+=======
+>>>>>>> Stashed changes
 // AJAX action to load more products
 add_action('wp_ajax_mytheme_load_more_products', 'mytheme_load_more_products');
 add_action('wp_ajax_nopriv_mytheme_load_more_products', 'mytheme_load_more_products');
@@ -252,7 +362,11 @@ function mytheme_load_more_products()
     // Define arguments for querying more products
     $args = array(
         'post_type'      => 'product',
+<<<<<<< Updated upstream
         'posts_per_page' => 12, // Adjust the number of products per page as needed
+=======
+        'posts_per_page' => 9, // Adjust the number of products per page as needed
+>>>>>>> Stashed changes
         'paged'          => $page,
     );
 
@@ -281,6 +395,7 @@ function mytheme_load_more_products()
 
     // Ensure the AJAX request completes
     wp_die();
+<<<<<<< Updated upstream
 }
 
 
@@ -352,4 +467,9 @@ function change_proceed_to_checkout_text($translated_text, $text, $domain)
     return $translated_text;
 }
 
+=======
+}
+
+
+>>>>>>> Stashed changes
 
