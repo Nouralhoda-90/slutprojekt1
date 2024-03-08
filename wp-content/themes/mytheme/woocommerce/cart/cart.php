@@ -19,6 +19,12 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
 
+<nav class="woocommerce-breadcrumb">
+	<a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('homepage', 'woocommerce'); ?></a>
+	<span class="breadcrumb-separator"> / </span>
+	<?php esc_html_e('shopping bag', 'woocommerce'); ?>
+</nav>
+
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
