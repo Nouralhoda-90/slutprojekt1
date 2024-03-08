@@ -2,10 +2,6 @@
 require_once('sorteringfilter.php');
 
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 if (!defined('ABSPATH')) {
     exit;
@@ -291,7 +287,6 @@ add_shortcode('display_subcategory_details', 'display_subcategory_details');
 
 
 
-<<<<<<< Updated upstream
 
 
 
@@ -345,8 +340,6 @@ if (!function_exists('custom_woocommerce_get_product_thumbnail')) {
 
 
 
-=======
->>>>>>> Stashed changes
 // AJAX action to load more products
 add_action('wp_ajax_mytheme_load_more_products', 'mytheme_load_more_products');
 add_action('wp_ajax_nopriv_mytheme_load_more_products', 'mytheme_load_more_products');
@@ -362,11 +355,7 @@ function mytheme_load_more_products()
     // Define arguments for querying more products
     $args = array(
         'post_type'      => 'product',
-<<<<<<< Updated upstream
         'posts_per_page' => 12, // Adjust the number of products per page as needed
-=======
-        'posts_per_page' => 9, // Adjust the number of products per page as needed
->>>>>>> Stashed changes
         'paged'          => $page,
     );
 
@@ -395,7 +384,6 @@ function mytheme_load_more_products()
 
     // Ensure the AJAX request completes
     wp_die();
-<<<<<<< Updated upstream
 }
 
 
@@ -467,9 +455,4 @@ function change_proceed_to_checkout_text($translated_text, $text, $domain)
     return $translated_text;
 }
 
-=======
-}
-
-
->>>>>>> Stashed changes
 
