@@ -9,18 +9,19 @@ function mytheme_enqueue()
 {
     $theme_directory = get_template_directory_uri();
     wp_enqueue_style("mystyle", $theme_directory . "/style.css");
+    wp_enqueue_script("app", $theme_directory . "/app.js");
 }
 add_action("wp_enqueue_scripts", "mytheme_enqueue");
 
 
 function mytheme_init()
 {
-    // add theme support
+    // --theme support
     add_theme_support('post-thumbnails');
 
 
-    
-    // register MENU
+
+    // --register menu
     $menu = array(
         'huvudmeny' => 'huvudmeny',
         'menyikoner'=>'menyikoner',
