@@ -2,11 +2,7 @@
 
 // require_once('shortcodes.php');
 require_once('vite.php');
-<<<<<<< Updated upstream
-require_once('ajax.php');
-=======
 
->>>>>>> Stashed changes
 
 require_once('settings.php');
 // require_once('checkout-hooks.php');
