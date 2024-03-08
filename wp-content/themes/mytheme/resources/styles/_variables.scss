@@ -1,8 +1,18 @@
+
+
+/*Nour footer*/
+$footer-text-primary:#FFFFFF80;
+$footer-text-secondary: #fff;
+$footer-background-color-primary: #323334;
+$footer-background-color-secondary:#222222;
+
 $footer-primary-background-color: #323334;
 $footer-secondary-background-color: #222222;;
 
 $primary-font-color: black;
 $secondary-font-color: #FFFFFF;
+
+
 
 $globle_color: red;
 $tertiary-font-color: #B88E2F;
@@ -18,7 +28,6 @@ $primary-text-color:  #323334;
 
 $primary-background-color: FFFFFF;
 $primary-text-color: #323334;
-//GLOBAL
 $content-width: calc(100% - 154px);
 
 //FONTS
@@ -51,16 +60,10 @@ $content-width: calc(100% - 154px);
   $light-font: 'Roboto-Light';
   $bold-font: 'Roboto-Bold';
 
-//COLORS
+
 $header-border-lines: #2a2b2d;
 $primary-font-color: #23272b;
 $background-color: #e78e8e;
-
-/*FOOTER*/
-$footer-text-primary:#FFFFFF80;
-$footer-text-secondary: #fff;
-$footer-background-color-primary: #323334;
-$footer-background-color-secondary:#222222;
 
 
 $dark-grey-color : #323334;

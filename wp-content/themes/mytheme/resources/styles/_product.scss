@@ -1,0 +1,40 @@
+
+
+.product_meta{
+    display: none;
+}
+#sidebar{
+    display: none;
+}
+.tabs.wc-tabs{
+    display: none;
+}
+#tab-description h2{
+    display: none;
+}
+ul.products.columns-4 li.product a.button {
+    display: none;
+  }
+  
+#reviews{
+    display: none;
+}
+
+.woocommerce-breadcrumb{
+    display: flex;
+    justify-content: center;
+
+    a{
+            text-decoration: none;
+            color: rgb(178, 77, 77);
+  font-size: $medium-font ;
+
+           
+    }
+
+}
+
+
+
+
+  

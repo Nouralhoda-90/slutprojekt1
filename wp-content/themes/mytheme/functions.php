@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 require_once("init.php");
-require_once("hooks-single.php");
+require_once("hooks.php");
 
 require_once(get_template_directory() . "/init.php");
 
