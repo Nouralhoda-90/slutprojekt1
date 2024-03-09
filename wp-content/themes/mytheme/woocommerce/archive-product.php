@@ -39,11 +39,7 @@ do_action( 'woocommerce_before_main_content' );
                 // Display initial 12 products
                 $args = array(
                     'post_type'      => 'product',
-<<<<<<< Updated upstream
-                    'posts_per_page' => 12,
-=======
                     'posts_per_page' => 9,
->>>>>>> Stashed changes
                 );
                 $query = new WP_Query($args);
 

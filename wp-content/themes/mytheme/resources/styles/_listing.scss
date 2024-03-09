@@ -1,187 +1,63 @@
+.site-main {.woocommerce-breadcrumb {
+  margin-left: 500px;
+  margin-top: 10px;
+}
+}
 .woocommerce-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-}
-
-.woocommerce-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-<<<<<<< Updated upstream
  
-=======
-  gap: 10px;
->>>>>>> Stashed changes
- 
-}
-.woocommerce-main-content {
-  flex: 1;
-<<<<<<< Updated upstream
-  max-width:900px;
-  margin-left: 169px;
-   margin-top: 30px;
-   
-
-
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  
-
-  .product-item {
-      width: calc(33.33% - 20px); // Adjust the width according to your design
-      margin-bottom: 60px; // Adjust the margin between products
-      box-sizing: border-box;
-
-      // Ensure equal height for all product items
+  .woocommerce-content {
+    display: flex;
+    justify-content: center;
+    width: 1200;
+    .products {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
 
-      // Style each product item
-      
+      .product-item {
+        width: calc(33.33% - 20px); /* Adjust the width of each item */
+        margin-bottom: 80px; /* Adjust the margin between products */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        
+        .product-image {
+          width: 100%;
+          height: 175px; /* Assuming fixed height for the images */
+          background: $product-background-color; // Assuming $product-background-color is defined elsewhere
+        }
+
+        .product-details {
+          font-family: 'Roboto';
+          font-weight: 300;
+          font-size: 12px;
+          line-height: 21px;
+          color: #323334;
+          margin-top: 90px;
+        }
+
+        .woocommerce-loop-product__title h2 {
+          font-family: 'Roboto';
+          font-weight: 300;
+          font-size: 14px;
+          line-height: 21px;
+          color: #323334;
+          margin-top: 80px;
+        }
+        .product-details-price .product-price{
+          margin-top: 20px;
+        }
+      }
+    }
   }
 }
-}
-
-
-// // Apply custom font families to your product list
-// .products {
-  
-//     font-family: $custom-regular-font;
-   
-//     list-style: none;
-//     justify-content: space-between;
-// }
-
-// ul.products{
-//   display: flex;
-//   flex-wrap: wrap;
-//   padding: 0;
-//   width: $product-column-width;
-// }
-
-// .product-item{
-  
-//   padding-top: 10px;
-// }
-=======
-  width:1000px;
-  margin-left: 167px;
-   margin-top: 10px;
-   
-}
-
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  
-
-  .product-item {
-      width: calc(33.33% - 20px); // Adjust the width according to your design
-      margin-bottom: 60px; // Adjust the margin between products
-      box-sizing: border-box;
-
-      // Ensure equal height for all product items
-      display: flex;
-      flex-direction: column;
-
-      // Style each product item
-      
-  }
-}
->>>>>>> Stashed changes
-
-
-
-// // Apply custom font families to your product list
-// .products {
-  
-//     font-family: $custom-regular-font;
-   
-//     list-style: none;
-//     justify-content: space-between;
-// }
-
-// ul.products{
-//   display: flex;
-//   flex-wrap: wrap;
-//   padding: 0;
-//   width: $product-column-width;
-// }
-
-// .product-item{
-  
-//   padding-top: 10px;
-// }
-
-.product-image {
-  width: 250px;
-  height: 250px;
-  background: $product-background-color;
-}
-
-
-// // Define the position and size of the product details container
-.product-details {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 21px;
-  color: #323334;
-  height: 40px;
- 
-  margin-top: 10px;
-}
-
-// Style the text inside the product details container
-.woocommerce-loop-product__title h2{
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
- 
-  line-height: 21px;
-  color: #323334;
- 
-}
-
-
-
-
-//  /*  justify-content: space-between; */
-//   li.product{
-//       list-style: none;
-//       border: 1px solid rgba(0,0,0,0.15);
-//       box-shadow: 0, 0, 10px, rgba(0,0,0,0.15);
-//       width: calc(25% - 10px);
-//       box-sizing: border-box;
-//       padding:20px;
-//       margin: 5px;
-//  }
-// .products {
-//   display: grid;
-//   grid-template-columns: repeat(6, 0fr); // Three columns with equal width
-
-
-//   .product-item {
-//       // Style each individual product item
-//       height: 400px;
-//       padding: 10px;
-//       background-color: #ffffff;
-     
-//       &:hover {
-//           box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-//       }}}
-//listing by filter:
-
 .product-container {
   width: 900;
   display: grid;
@@ -190,8 +66,10 @@
   margin-left: 320px;
 
   .product-item {
-   padding-bottom: 30px;
+   
    margin-top: 20px;
+   width: calc(77.77% - 20px); /* Adjust the width of each item */
+        
   }
   .product-details {
     font-family: 'Roboto';
@@ -220,74 +98,3 @@
 
 
 }
-
-li .bedroom {
-  color: red;
-}
-.product-price{
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 21px;
-  color: #323334;
-<<<<<<< Updated upstream
-}
-
-
-
-
-//  /*  justify-content: space-between; */
-//   li.product{
-//       list-style: none;
-//       border: 1px solid rgba(0,0,0,0.15);
-//       box-shadow: 0, 0, 10px, rgba(0,0,0,0.15);
-//       width: calc(25% - 10px);
-//       box-sizing: border-box;
-//       padding:20px;
-//       margin: 5px;
-//  }
-// .products {
-//   display: grid;
-//   grid-template-columns: repeat(6, 0fr); // Three columns with equal width
-
-
-//   .product-item {
-//       // Style each individual product item
-//       height: 400px;
-//       padding: 10px;
-//       background-color: #ffffff;
-     
-//       &:hover {
-//           box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-//       }}}
-//listing by filter:
-
-    /* CSS for product container */
-.product-container { display: grid;
-  grid-template-columns: repeat(3, 2fr); // Three columns with equal width
-margin-left: 330px;
-
-}
-
-
-
-.product-row {
-  display: grid;
-//   grid-template-columns: repeat(6, 0fr); /* Adjust margin as needed */
-}
-
-.product-column {
-  display: grid;
-   grid-template-columns: repeat(1, 0fr); // Three columns with equal width
-}
-
-.price {
-  display: flex;
-  width: 100%;
-  height: auto;
-margin-bottom: 30px;}
-=======
-  margin-bottom: 30px;
-}
->>>>>>> Stashed changes

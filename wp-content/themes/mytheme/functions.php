@@ -287,59 +287,6 @@ add_shortcode('display_subcategory_details', 'display_subcategory_details');
 
 
 
-
-
-
-
-
-
-
-function my_theme_enqueue_scripts()
-{
-    // Enqueue your app.js file
-    wp_enqueue_script("mytheme_app", get_template_directory_uri() . "/resources/js/app.js", array('jquery'), '1.0', true);
-
-    // Localize your script with the appropriate AJAX URL and nonce
-    wp_localize_script('mytheme_app', 'ajax_params', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('mytheme_app')
-    ));
-}
-add_action('wp_enqueue_scripts', 'my_theme_enqueue_scripts');
-
-
-
-add_action('init', function () {
-    remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 12);
-    add_action('woocommerce_before_shop_loop_item_title', 'custom_woocommerce_template_loop_product_thumbnail', 12);
-});
-
-if (!function_exists('custom_woocommerce_template_loop_product_thumbnail')) {
-    function custom_woocommerce_template_loop_product_thumbnail()
-    {
-        echo custom_woocommerce_get_product_thumbnail();
-    }
-}
-
-if (!function_exists('custom_woocommerce_get_product_thumbnail')) {
-    function custom_woocommerce_get_product_thumbnail($size = 'shop_catalog')
-    {
-        global $post, $woocommerce;
-        $output = '';
-
-        if (has_post_thumbnail()) {
-            $src = get_the_post_thumbnail_url($post->ID, $size);
-            $output .= '<img class="lazy" src="your-placeholder-image.png" data-src="' . $src . '" data-srcset="' . $src . '" alt="Lazy loading image">';
-        } else {
-            $output .= wc_placeholder_img($size);
-        }
-
-        return $output;
-    }
-}
-
-
-
 // AJAX action to load more products
 add_action('wp_ajax_mytheme_load_more_products', 'mytheme_load_more_products');
 add_action('wp_ajax_nopriv_mytheme_load_more_products', 'mytheme_load_more_products');
@@ -355,7 +302,7 @@ function mytheme_load_more_products()
     // Define arguments for querying more products
     $args = array(
         'post_type'      => 'product',
-        'posts_per_page' => 12, // Adjust the number of products per page as needed
+        'posts_per_page' => 9, // Adjust the number of products per page as needed
         'paged'          => $page,
     );
 
@@ -386,73 +333,5 @@ function mytheme_load_more_products()
     wp_die();
 }
 
-
-
-function enqueue_custom_scripts() {
-    // Enqueue your JavaScript file with ajaxurl as a dependency
-    wp_enqueue_script('custom-script', get_template_directory_uri() . '/resources/js/app.js', array('jquery'), false, true);
-
-    // Pass ajaxurl to the script
-    wp_localize_script('custom-script', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
-}
-add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-
-
-/**
- * Apply free shipping automatically when the subtotal is $1000 or more
- */
-function apply_free_shipping_based_on_subtotal( $rates, $package ) {
-    // Get the cart subtotal
-    $subtotal = WC()->cart->get_subtotal();
-
-    // Check if the subtotal is $1000 or more
-    if ( $subtotal >= 1000 ) {
-        // Loop through available shipping rates
-        foreach ( $rates as $rate_key => $rate ) {
-            // Check if the shipping method is flat rate
-            if ( 'flat_rate' === $rate->method_id ) {
-                // Set the shipping cost to zero
-                $rates[$rate_key]->cost = 0;
-                break; // Exit the loop since we found the flat rate
-            }
-        }
-    }
-
-    return $rates;
-}
-add_filter( 'woocommerce_package_rates', 'apply_free_shipping_based_on_subtotal', 10, 2 );
-
-
-
-
-//-------------------CART---------------------
-
-
-add_filter('gettext', 'change_subtotal_to_order_value', 20, 3);
-function change_subtotal_to_order_value($translated_text, $text, $domain)
-{
-    if ($text === 'Subtotal') {
-        $translated_text = __('Order Value:', 'woocommerce');
-    }
-    return $translated_text;
-}
-
-add_filter('gettext', 'change_shipping_label', 20, 3);
-function change_shipping_label($translated_text, $text, $domain)
-{
-    if ($text === 'Shipping') {
-        $translated_text = __('Shipping:', 'woocommerce');
-    }
-    return $translated_text;
-}
-
-add_filter('gettext', 'change_proceed_to_checkout_text', 20, 3);
-function change_proceed_to_checkout_text($translated_text, $text, $domain)
-{
-    if ($text === 'Proceed to checkout') {
-        $translated_text = __('CONTINUE TO CHECKOUT', 'woocommerce');
-    }
-    return $translated_text;
-}
 
 
