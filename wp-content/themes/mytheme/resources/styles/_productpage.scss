@@ -1,33 +1,81 @@
-nav.woocommerce-breadcrumb {
-    text-align: center; /* Center the text horizontally */
-    margin-top: 40px !important; /* Add margin-top */
-}
+#breadcrumbs{
 
-
-.woocommerce-content {
     display: flex;
+    justify-content: center;
+    margin: 12px;
+
+        
+            text-decoration: none;
+            font-size: 19px;
+        
+}
+.summary.entry-summary{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    float: right;
+    width: 32%;
+    flex-direction: column;
+    
+        .product_title.entry-title{
+            margin-top: 60px;
+        }
+    }
+
+ .product_meta{
+    display: none;
+ }
+
+.woocommerce-product-gallery{
+    display:none;
 }
 
-.woocommerce-sidebar {
-    width: 100px; /* Adjust as needed */
-    flex-shrink: 0; /* Sidebar won't shrink */
-    /* Other styles for sidebar */
+.attachment-full size-full{
+    padding-left: 20px;
+    padding-top: 60px;
+    width: 10px;
+}
+.attachment-full size-full:nth-child(2){
+    padding-left: 30px;
+}
+.attachment-full size-full:nth-child(1){
+    padding-left: 79px;
+    width: 50%;
+
+}
+.tabs wc-tabs{
+    display: none;
 }
 
-#load-more-button {
+.woocommerce-Tabs-panel woocommerce-Tabs-panel{
+    display: none;
+}
+#tab-description{
+    background-color:#F0EFED;
+    width: 60%
+
+}
+
+.product_title.entry-title{
+    
+
+        margin-top: 60px;
+        font-size: $regular-font;
+        font-weight: $product-weight-medium;
+
+    }
+
+
+        .price{
+            font-size: 24px;
+            font-weight: $product-weight-medium;
+        }
+   .miniature-image{
     display: block;
-    width: 371px;
-    height: 51px;
-    padding: 10px;
-    margin: 20px auto;
-    border: none;
-    background-color: #323334;
-    text-align: center;
-    color: #fff;
-    cursor: pointer;
-    font-family: Roboto;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 19px;
-    letter-spacing: 0em;
-}
+    margin-top: 10px;
+    width: 53px;
+    height: 72px;
+    border: 1px solid $product-color;
+    margin-bottom: 30px;
+   }
+

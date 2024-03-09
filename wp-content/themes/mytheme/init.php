@@ -5,8 +5,6 @@ require_once('vite.php');
 
 
 require_once('settings.php');
-// require_once('checkout-hooks.php');
-
 
 
 function my_theme_enqueue() {    
