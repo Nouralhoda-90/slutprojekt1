@@ -70,7 +70,6 @@ $breadcrumbs[] = '<span>/</span>' . $current_category_name ;
     echo $args['wrap_after'];
 }
 
-<<<<<<< HEAD
 
 
 function custom_div_shortcode( $atts, $content = null ) {
@@ -78,62 +77,6 @@ function custom_div_shortcode( $atts, $content = null ) {
     $atts = shortcode_atts( array(
         'class' => '', 
     ), $atts, 'custom_div' );
-=======
-// Hook into the woocommerce_breadcrumb function
-remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
-add_action('woocommerce_before_main_content', 'my_custom_woocommerce_breadcrumb', 20);
-
-
-
-
-// Custom categories filter shortcode with widget registration
-function my_custom_widgets_init()
-{
-    register_sidebar(array(
-        'name' => esc_html__('Custom Sidebar', 'my-moody-studio-theme'),
-        'id' => 'custom-filter',
-        'description' => esc_html__('Add widgets here to appear in your sidebar.', 'my-moody-studio-theme'),
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget' => '</section>',
-        'before_title' => '<h2 class="widget-title">',
-        'after_title' => '</h2>',
-    ));
-}
-add_action('widgets_init', 'my_custom_widgets_init');
-
-// Custom categories filter shortcode with widget registration
-function custom_categories_filter_shortcode_with_widget() {
-    // Register custom sidebar widget
-    if (!function_exists('my_custom_widgets_init')) {
-        function my_custom_widgets_init()
-        {
-            
-            register_sidebar(array(
-                'name' => esc_html__('Custom Sidebar', 'my-moody-studio-theme'),
-                'id' => 'custom-filter',
-                'description' => esc_html__('Add widgets here to appear in your sidebar.', 'my-moody-studio-theme'),
-                'before_widget' => '<section id="%1$s" class="widget %2$s">',
-                'after_widget' => '</section>',
-                'before_title' => '<h2 class="widget-title">',
-                'after_title' => '</h2>',
-            ));
-        }
-        add_action('widgets_init', 'my_custom_widgets_init');
-    }
-
-    ob_start();
-
-    $args = array(
-        'taxonomy'     => 'product_cat',
-        'orderby'      => 'ID',
-        'order'        => 'ASC', 
-        'show_count'   => 0,
-        'pad_counts'   => 0,
-        'hierarchical' => 1,
-        'title_li'     => '',
-        'hide_empty'   => 0
-    );
->>>>>>> main
 
     
     // Output the filter chart HTML
@@ -229,132 +172,11 @@ function custom_categories_filter_shortcode_with_widget() {
         </div>
     </div>
     <?php
-<<<<<<< HEAD
     
 }
 
 
 add_shortcode( 'custom_div', 'custom_div_shortcode' );
 
-=======
-
-    return ob_get_clean();
-}
-
-add_shortcode( 'custom_categories_filter', 'custom_categories_filter_shortcode_with_widget' );
-
-
-
-
-
-
-
-
-
-
-// Function to show the store message in a div
-function custom_unique_div_shortcode( $atts, $content = null ) {
-    // Define default attributes and override if provided
-    $atts = shortcode_atts( array(
-        'class' => 'unique-class', // Add your unique class here
-    ), $atts, 'custom_unique_div' );
-
-    // Start output buffering
-    ob_start(); ?>
-
-<div class="custom-div <?php echo esc_attr( $atts['class'] ); ?>">
-    <div class="inner-div">
-        <p class="p-text1">Member Exclusive</p>
-        <p class="p-text2">15% off everything + extra 100:- off for plus status</p>
-        <p class="p-text3">Not a member? <a href="#">Join now to shop</a>.</p>
-    </div>
-</div>
-
-
-    <?php
-    // Return the buffered output
-    return ob_get_clean();
-}
-add_shortcode( 'custom_unique_div', 'custom_unique_div_shortcode' );
-
-
-
-// Custom function to display subcategory information
-function display_subcategory_details($atts, $content = null)
-{
-    // Shortcode attributes
-    $atts = shortcode_atts(array(
-        'class' => '',
-        'current_category_name' => '', // Attribute to hold current category name
-    ), $atts, 'show_details_shortcode');
-
-    // Output HTML
-    ob_start(); ?>
-    <div class="custom-div2 <?php echo esc_attr($atts['class']); ?>">
-        <div class="subcategory-details">
-            <h3 class="h1-text1"><?php echo esc_html($atts['current_category_name']); ?></h3>
-            <p class="p-text5">It's easy to transform your be interior with our great selection of accessories.</p>
-        </div>
-    </div>
-    <div class="link">
-        <div class="text10"> <span class="models">Models</span> <span class="prod">Products</span> </div>
-    </div>
-    <?php
-    return ob_get_clean();
-}
-
-// Register shortcode
-add_shortcode('display_subcategory_details', 'display_subcategory_details');
-
-
-
-
-// AJAX action to load more products
-add_action('wp_ajax_mytheme_load_more_products', 'mytheme_load_more_products');
-add_action('wp_ajax_nopriv_mytheme_load_more_products', 'mytheme_load_more_products');
-
-function mytheme_load_more_products()
-{
-    // Verify nonce for security
-    check_ajax_referer('mytheme_lazy_load_nonce', 'nonce');
-
-    // Get the page number from the AJAX request
-    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-
-    // Define arguments for querying more products
-    $args = array(
-        'post_type'      => 'product',
-        'posts_per_page' => 9, // Adjust the number of products per page as needed
-        'paged'          => $page,
-    );
-
-    // Query more products
-    $query = new WP_Query($args);
-
-    // Start output buffering
-    ob_start();
-
-    // Loop through and display products
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            wc_get_template_part('content', 'product');
-        }
-    }
-
-    // Reset post data
-    wp_reset_postdata();
-
-    // Get the buffered output
-    $output = ob_get_clean();
-
-    // Send the HTML markup of the new products in the AJAX response
-    echo $output;
-
-    // Ensure the AJAX request completes
-    wp_die();
-}
-
->>>>>>> main
 
 
