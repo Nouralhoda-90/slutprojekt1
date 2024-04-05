@@ -26,11 +26,19 @@
                         'container' => 'nav',
                         'items_wrap' => 
                         '<ul>
+<<<<<<< HEAD
                                 <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/Vector.png" alt="Search"></a></li>
                                 <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/account.png" alt="My Account"></a></li>
                                 <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/cartg.png" alt="Cart"></a></li>
                         <div class="basket-count">
                         <span class="cart-count count">
+=======
+                        <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/Vector.png" alt="Search"></a></li>
+                        <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/account.png" alt="My Account"></a></li>
+                        <li><a href="#"><img src="' . esc_url( get_template_directory_uri() ) . '/resources/images/cart11.png" alt="Cart" style="width: 25px;"></a></li>
+                        <div class="basket-item-count">
+                        <span class="cart-items-count count">
+>>>>>>> main
                     
                         <span class="cart-count count">' . $cart_items_count . '</span>
                             

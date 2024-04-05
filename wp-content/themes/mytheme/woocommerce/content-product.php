@@ -24,38 +24,40 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( '', $product ); ?>>
-	<?php
-	/**
-	 * Hook: woocommerce_before_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_open - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item' );
+<div class="product-item">
+    <div class="product-image">
+        <?php
+        /**
+         * Hook: woocommerce_before_shop_loop_item.
+         */
+        do_action( 'woocommerce_before_shop_loop_item' );
 
-	// Output the product image
-	echo '<a href="' . esc_url( get_permalink() ) . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
-	echo woocommerce_get_product_thumbnail();
-	echo '</a>';
+        // Output the product image
+        echo '<a href="' . esc_url( get_permalink() ) . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
+        echo woocommerce_get_product_thumbnail();
+        echo '</a>';
+        ?>
+    </div>
 
-	// Output the product title
-	echo '<h2 class="woocommerce-loop-product__title">' . get_the_title() . '</h2>';
+    <div class="product-details-price">
+        <div class="product-details">
+            <?php
+            // Output the product title
+            echo '<h2 class="woocommerce-loop-product__title">' . get_the_title() . '</h2>';
 
-	// Output the product color attribute
-	$colors = wc_get_product_terms( $product->get_id(), 'pa_color', array( 'fields' => 'names' ) );
-	if ( $colors ) {
-	    echo '<p class="product-color">Colors: ' . implode( ', ', $colors ) . '</p>';
-	}
+            // Output the product color attribute
+            $colors = wc_get_product_terms( $product->get_id(), 'pa_color', array( 'fields' => 'names' ) );
+            if ( $colors ) {
+                echo '<p class="product-color">Colors: ' . implode( ', ', $colors ) . '</p>';
+            }
+            ?>
+        </div>
 
-	// Output the product price
-	echo '<span class="price">' . $product->get_price_html() . '</span>';
-
-	/**
-	 * Hook: woocommerce_after_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_close - 5
-	 * @hooked woocommerce_template_loop_add_to_cart - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop_item' );
-	?>
-</li>
+        <div class="product-price">
+            <?php
+            // Output the product price
+            echo '<span class="price">' . $product->get_price_html() . '</span>';
+            ?>
+        </div>
+    </div>
+</div>

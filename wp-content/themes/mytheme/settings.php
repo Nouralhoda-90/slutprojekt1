@@ -40,9 +40,7 @@ function mytheme_add_setting_callback()
 //registrerar inställningar tillgängliga på sidan "Butik"
 function mytheme_add_settings_init()
 {
-    //===========================
-    // add block  butik_general
-    //===========================
+  
     add_settings_section(
         'butik_general',
         'Store General Setting',
@@ -50,9 +48,7 @@ function mytheme_add_settings_init()
         'butik'
     );
 
-    //===========================
-    //add content into butik_general
-    //===========================
+  
     register_setting(
         "butik",
         "store_message"
@@ -70,9 +66,7 @@ function mytheme_add_settings_init()
         )
     );
 
-    //------------------
-    // name
-    //------------------
+   
     register_setting(
         "butik",
         "store_name"
@@ -90,9 +84,7 @@ function mytheme_add_settings_init()
         )
     );
 
-    //------------------
-    // footer infomation
-    //------------------
+   //footer
     register_setting(
         "butik",
         "store_footer_info"
@@ -109,9 +101,7 @@ function mytheme_add_settings_init()
             "option_type" => "textarea"
         )
     );
-    //------------------
-    // address
-    //------------------
+  //address-
     register_setting(
         "butik",
         "store_address"
@@ -128,9 +118,7 @@ function mytheme_add_settings_init()
             "option_type" => "text"
         )
     );
-    //------------------
-    // tel
-    //------------------
+  //Tel.
     register_setting(
         "butik",
         "store_tel"
@@ -147,9 +135,7 @@ function mytheme_add_settings_init()
             "option_type" => "text"
         )
     );
-    //------------------
-    // email
-    //------------------
+   
     register_setting(
         "butik",
         "store_email"
@@ -167,29 +153,11 @@ function mytheme_add_settings_init()
         )
     );
 
-    //------------------
-    // copyright
-    //------------------
-    register_setting(
-        "butik",
-        "store_copyright"
-    );
 
-    add_settings_field(
-        "store_copyright",
-        "Store Copyright",
-        "mytheme_section_setting",
-        "butik",
-        "butik_general",
-        array(
-            "option_name" => "store_copyright",
-            "option_type" => "text"
-        )
-    );
 
-    //------------------
+   
     // open hours
-    //------------------
+   
     register_setting(
         "butik",
         "store_open"
@@ -207,9 +175,7 @@ function mytheme_add_settings_init()
         )
     );
 
-    //----------------------------
-    // store information content 1
-    //----------------------------
+    
     register_setting(
         "butik",
         "store_shop_hero_title"
@@ -227,9 +193,7 @@ function mytheme_add_settings_init()
         )
     );
 
-    //----------------------------
-    // store information content 2
-    //----------------------------
+   
     register_setting(
         "butik",
         "store_shop_hero_sub_title"
@@ -246,45 +210,25 @@ function mytheme_add_settings_init()
             "option_type" => "textarea"
         )
     );
-    //----------------------------
-    // store information content 3
-    //----------------------------
+    
     register_setting(
         "butik",
-        "store_shop_hero_info"
+        "shortcode_shop_info"
     );
 
     add_settings_field(
-        "store_shop_hero_info",       //id
-        "Shop hero info",             //title(will be shown on setting-butik page)
+        "shortcode_shop_info",       //id
+        "Shop  info",             //title(will be shown on setting-butik page)
         "mytheme_section_setting",    //callback function
         "butik",                      //page
         "butik_general",              //section
         array(                        //multiple parameter
             "option_name" => "store_shop_hero_info",
-            "option_type" => "textarea"
+            "option_type" => "text"
         )
     );
 
-    //------------------
-    // show message checkbox
-    //------------------
-    register_setting(
-        "butik",
-        "store_show_message"
-    );
 
-    add_settings_field(
-        "show_message",           //id
-        "Show Message",           //title(will be shown on setting-butik page)
-        "mytheme_section_setting", //callback function
-        "butik",                   //page
-        "butik_general",           //section
-        array(                     //multiple parameter
-            "option_name" => "store_show_message",
-            "option_type" => "checkbox"
-        )
-    );
 }
 add_action('admin_init', 'mytheme_add_settings_init');
 

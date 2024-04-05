@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 <?php
+=======
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/resources/js/app.js"></script>
+
+
+<?php
+
+>>>>>>> main
 /**
  * The template for displaying product content in the single-product.php template
  *
@@ -15,7 +24,11 @@
  * @version 3.6.0
  */
 
+<<<<<<< HEAD
 defined( 'ABSPATH' ) || exit;
+=======
+defined('ABSPATH') || exit;
+>>>>>>> main
 
 global $product;
 
@@ -24,13 +37,20 @@ global $product;
  *
  * @hooked woocommerce_output_all_notices - 10
  */
+<<<<<<< HEAD
 do_action( 'woocommerce_before_single_product' );
 
 if ( post_password_required() ) {
+=======
+do_action('woocommerce_before_single_product');
+
+if (post_password_required()) {
+>>>>>>> main
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
 ?>
+<<<<<<< HEAD
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
 	<?php
@@ -45,6 +65,13 @@ if ( post_password_required() ) {
 
 	<div class="summary entry-summary">
 		<?php
+=======
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
+
+	<div class="summary entry-summary">
+		<?php
+
+>>>>>>> main
 		/**
 		 * Hook: woocommerce_single_product_summary.
 		 *
@@ -57,10 +84,33 @@ if ( post_password_required() ) {
 		 * @hooked woocommerce_template_single_sharing - 50
 		 * @hooked WC_Structured_Data::generate_product_data() - 60
 		 */
+<<<<<<< HEAD
 		do_action( 'woocommerce_single_product_summary' );
 		?>
 	</div>
 
+=======
+		do_action('woocommerce_single_product_summary');
+		?>
+
+	</div>
+
+	
+
+	<?php
+	/**
+	 * Hook: woocommerce_before_single_product_summary.
+	 *
+	 * @hooked woocommerce_show_product_sale_flash - 10
+	 * @hooked woocommerce_show_product_images - 20
+	 */
+	do_action('woocommerce_before_single_product_summary');
+	?>
+
+
+
+
+>>>>>>> main
 	<?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
@@ -69,8 +119,19 @@ if ( post_password_required() ) {
 	 * @hooked woocommerce_upsell_display - 15
 	 * @hooked woocommerce_output_related_products - 20
 	 */
+<<<<<<< HEAD
 	do_action( 'woocommerce_after_single_product_summary' );
 	?>
 </div>
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>
+=======
+	do_action('woocommerce_after_single_product_summary');
+	?>
+</div>
+<div id="related-products-container"></div>
+<button id="load-more-related-products">Visa fler produkter</button>
+
+
+<?php do_action('woocommerce_after_single_product'); ?>
+>>>>>>> main

@@ -1,0 +1,96 @@
+.custom-div {
+  display: flex;
+  flex-direction: column;
+  width: 1440px;
+  height: 256px;
+  margin-top: 40px;
+  background: $custom-primary-background-color; // Use the primary background color
+  
+ 
+}
+
+
+
+
+.p-text1 {
+  text-align: center;
+  margin-top: 44px;
+
+  font-size: 38px;
+  font-weight: bold;
+  color: $custom-primary-font-color; // Use the primary font color
+}
+
+.p-text2{ 
+  text-align: center;
+  font-size: 38px;
+  margin-top: 1px;
+
+  color: $custom-primary-font-color; // Use the secondary font color
+}
+
+.p-text3 {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 50px;
+ 
+  color: $custom-primary-font-color; // Use the secondary font color
+}
+
+.custom-div2 {
+  position: absolute;
+  width: 650px;
+  height: 21px;
+  left: 380px;
+  top: 630px;
+  font-family:  $bold-font;
+ 
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 21px;
+  text-transform: capitalize;
+  color: $primary-text-color;
+}
+
+.p-text5 {
+  position: absolute;
+  width: 750px; /* Adjust width as needed */
+  font-family: $custom-regular-font;
+ top: 70px;
+  font-weight: 300;
+  font-size: 18px;
+ 
+  line-height: 21px;
+ 
+  margin-top: 40px;
+}
+
+
+
+
+
+.models, .prod {
+  position: absolute;
+  
+  height: 19px;
+  font-family: $custom-regular-font;
+ 
+ 
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
+}
+
+.models {
+  left: 1030px;
+  top: 790px;
+  color: #FE1313;
+}
+
+.prod {
+  left: 1123px;
+  top: 790px;
+  color: #323334;
+}
+
