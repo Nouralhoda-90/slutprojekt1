@@ -79,90 +79,8 @@ $header-border-lines: #2a2b2d;
 $primary-font-color: #23272b;
 $background-color: #e78e8e;
 
-<<<<<<< HEAD
 
 $dark-grey-color : #323334;
-=======
-/*FOOTER*/
-$footer-text-primary:#FFFFFF80;
-$footer-text-secondary: #fff;
-$footer-background-color-primary: #323334;
-$footer-background-color-secondary:#222222;
-
-// Define custom font families using provided variables
-$custom-regular-font: 'Roboto-Regular';
-$custom-medium-font: 'Roboto-Medium';
-$custom-light-font: 'Roboto-Light';
-$custom-bold-font: 'Roboto-Bold';
-
-// Apply custom font families to your styles
-.p-text1, .p-text2, .p-text3 {
-  font-family: $custom-regular-font; // Use the regular font
-}
-
-// Define custom content width
-$content-width: calc(100% - 154px);
-
-// Apply custom content width to the div
-.custom-div {
-  width: $content-width;
-}
-
-// Define custom font faces
-@font-face {
-  font-family: $custom-regular-font;
-  src: url('../fonts/roboto/Roboto-Regular.ttf') format('truetype');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: $custom-medium-font;
-  src: url('../fonts/roboto/Roboto-Medium.ttf') format('truetype');
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: $custom-bold-font;
-  src: url('../fonts/roboto/Roboto-Bold.ttf') format('truetype');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: $custom-light-font;
-  src: url('../fonts/roboto/Roboto-Light.ttf') format('truetype');
-  font-weight: 300;
-}
-
-
-// Define custom font faces
-@font-face {
-  font-family: $custom-regular-font;
-  src: url('../fonts/roboto/Roboto-Regular.ttf') format('truetype');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: $custom-medium-font;
-  src: url('../fonts/roboto/Roboto-Medium.ttf') format('truetype');
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: $custom-bold-font;
-  src: url('../fonts/roboto/Roboto-Bold.ttf') format('truetype');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: $custom-light-font;
-  src: url('../fonts/roboto/Roboto-Light.ttf') format('truetype');
-  font-weight: 300;
-}
-
-// Apply custom font faces to the text elements
-.p-text1, .p-text2, .p-text3 {
-  font-family: $custom-regular-font;
-}
 
 // Define colors using provided variables
 $product-background-color: #C4C4C4;
@@ -173,4 +91,11 @@ $product-font-color: #323334;
 // Define spacing
 $product-spacing: 20px;
 
->>>>>>> main
+/// SINGLE PRODUCT
+$product-color: #373a3d;
+$product-size-small: 14px;
+$product-size-medium: 18px;
+$product-weight-small: 300;
+$product-weight-medium: 500;
+$product-font-size-medium: 16px;
+$product-font-size-large:28px;

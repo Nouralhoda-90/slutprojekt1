@@ -3,7 +3,6 @@
 // require_once('shortcodes.php');
 require_once('vite.php');
 
-<<<<<<< HEAD
 require_once('settings.php');
 
 function mytheme_enqueue()
@@ -13,11 +12,6 @@ function mytheme_enqueue()
     wp_enqueue_script("app", $theme_directory . "/app.js");
 }
 add_action("wp_enqueue_scripts", "mytheme_enqueue");
-=======
-
-require_once('settings.php');
-
->>>>>>> main
 
 function my_theme_enqueue() {    
     $data = array(
