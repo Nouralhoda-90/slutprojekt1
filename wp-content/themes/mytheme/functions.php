@@ -1,182 +1,168 @@
 <?php
-require_once('sorteringfilter.php');
+
+require_once("vite.php");
+require_once("settings.php");
+require_once('shortcodes.php');
 
 
-
-if (!defined('ABSPATH')) {
-    exit;
-}
-require_once("init.php");
-require_once("hooks.php");
-
+//initial theme
 require_once(get_template_directory() . "/init.php");
 
 
-
-/**
- * support Woocommerce function
- */
 function mytheme_add_woocommerce_support()
-{
+{ 
     add_theme_support('woocommerce');
 }
 add_action('after_setup_theme', 'mytheme_add_woocommerce_support');
 
 
 
-// Override the WooCommerce breadcrumb function
-function my_custom_woocommerce_breadcrumb($args = array())
+
+
+//Product 
+
+
+add_filter('woocommerce_get_breadcrumb', 'remove_first_breadcrumb', 10, 2);
+
+function remove_first_breadcrumb($crumbs, $breadcrumb)
 {
-    $args = wp_parse_args(
-        $args,
-        apply_filters(
-            'woocommerce_breadcrumb_defaults',
-            array(
-                'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">',
-                'wrap_after' => '</nav>',
-                'before' => '',
-                'after' => '',
-                'delimiter' => '',
-                'home' => _x('home page', 'breadcrumb', 'woocommerce'),
-            )
-        )
-    );
+    array_shift($crumbs);
+    return $crumbs;
+}
 
-    // Define an empty array to store breadcrumb items
-    $breadcrumbs = array();
+add_filter('gettext', 'change_related_products_text', 20, 3);
+function change_related_products_text($translated_text, $text, $domain)
+{
+    if ($text === 'Related products') {
+        $translated_text = __('Also You May Like', 'woocommerce');
+    }
+    return $translated_text;
+}
 
-    // Home link
-    $breadcrumbs[] = '<a href="' . home_url() . '">' . $args['home'] . '</a>';
+add_action('woocommerce_single_product_summary', 'add_miniature_image_after_short_description', 25);
+function add_miniature_image_after_short_description()
+{
+    global $product;
 
-    // Custom breadcrumb items
-    $breadcrumbs[] = '<span>/</span><a href="' . home_url('/brand') . '">Brand</a>';
-    $breadcrumbs[] = '<span>/</span><a href="' . home_url('/h-and-m-home') . '">H&amp;M Home</a>';
+    if (has_post_thumbnail($product->get_id())) {
+        $thumbnail_url = get_the_post_thumbnail_url($product->get_id(), 'thumbnail');
+        echo '<img src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr(get_the_title()) . '" class="miniature-image" />';
+    }
+}
 
-  // Manually set the current category
-$current_category_name = "Bedroom";
+add_action('woocommerce_single_product_summary', 'add_not_available_text', 25);
+function add_not_available_text()
+{
+    echo '<div class="not-available">';
+    echo '<img src="http://wordpress_slutprojekt.test/wp-content/uploads/2024/04/pin.png">';
+    echo '<span class="text">Not available in stores</span>';
+    echo '</div>';
+}
 
-// Current page (category name)
-$breadcrumbs[] = '<span>/</span>' . $current_category_name ;
+
+add_filter('woocommerce_product_single_add_to_cart_text', 'change_add_to_cart_button_text');
+
+function change_add_to_cart_button_text($text)
+{
+    return __('ADD TO SHOPPING BAG', 'woocommerce');
+}
+
+//CART
 
 
-    // Output the breadcrumb navigation
-    echo $args['wrap_before'];
-    echo $args['before'];
+add_filter('gettext', 'change_subtotal_to_order_value', 20, 3);
+function change_subtotal_to_order_value($translated_text, $text, $domain)
+{
+    if ($text === 'Subtotal') {
+        $translated_text = __('Order Value:', 'woocommerce');
+    }
+    return $translated_text;
+}
 
-    // Output each breadcrumb item with the delimiter
-    echo implode('', $breadcrumbs);
+add_filter('gettext', 'change_shipping_label', 20, 3);
+function change_shipping_label($translated_text, $text, $domain)
+{
+    if ($text === 'Shipping') {
+        $translated_text = __('Shipping:', 'woocommerce');
+    }
+    return $translated_text;
+}
 
-    echo $args['after'];
-    echo $args['wrap_after'];
+add_filter('gettext', 'change_proceed_to_checkout_text', 20, 3);
+function change_proceed_to_checkout_text($translated_text, $text, $domain)
+{
+    if ($text === 'Proceed to checkout') {
+        $translated_text = __('CONTINUE TO CHECKOUT', 'woocommerce');
+    }
+    return $translated_text;
 }
 
 
 
-function custom_div_shortcode( $atts, $content = null ) {
-    
-    $atts = shortcode_atts( array(
-        'class' => '', 
-    ), $atts, 'custom_div' );
 
-    
-    // Output the filter chart HTML
-    ?>
-    <div class="custom-filter-chart"> 
-    <div class="related-words">
-         <p class="word">New arrivals</p>
-         <ul>
-             <li id="new">New arrivals</li>
-             </ul>
-        </div>
 
-        <div class="related-words">
-           
-        </div>
-        <div class="related-words">
-            <p class="word">Shop by room</p>
-            <ul>
-            <li class="custom-red">Bedroom</li>
 
-                <li>duvet cover sets</li>
-                <li>sheets</li>
-                <li>bedspreads & blankets</li>
-                <li>blankets</li>
-                <li>curtains</li>
-                <li>pillowcases</li>
-                <li>rugs</li>
-                <li>living room</li>
-                <li>child room</li>
-                <li>bathroom</li>
-                <li>Outdoor</li>
-            </ul>
-        </div>
-        <div class="related-words">
-            <p class="word">Shop by concept</p>
-            <ul>
-                <li>Conscious</li>
-                <li>premium quality</li>
-                <li>classic collection</li>
-            </ul>
-        </div>
-    </div>
-    <?php  
-    
-    
 
-    // Output the rest of the filter shortcode content
-    ?>
-    <div class="custom-filter">
-        <div class="custom-gender"><p>Gender</p>
-        <div class="custom-man">
-            <input type="checkbox" id="myCheckbox1" name="myCheckbox" value="checked"><span class="custom-span1">Man</span>
-        </div>
-        <div class="woman">
-                <input type="checkbox" id="myCheckbox2" name="myCheckbox" value="checked"><span class="span2">Woman</span>
-                </div>
-            </div>
-            <div class="custom-color-filter">
-  <p class="custom-color">Color</p>
-  <div class="custom-color-row">
-    <span class="custom-color-circle" style="background-color: #F34;"></span>
-    <span class="custom-color-circle" style="background-color: #323334;"></span>
-    <span class="custom-color-circle" style="background-color: #C4C4C4;"></span>
-    <span class="custom-color-circle" style="background-color: #F2C94C;"></span>
-    <span class="custom-color-circle" style="background-color: #F2994A;"></span>
-    <span class="custom-color-circle" style="background-color: #EB5757;"></span>
-  </div>
-  <div class="custom-color-row">
-    <span class="custom-color-circle" style="background-color: #BB6BD9;"></span>
-    <span class="custom-color-circle" style="background-color: #9CF2;"></span>
-    <span class="custom-color-circle" style="background-color: #C6FCF9;"></span>
-    <span class="custom-color-circle" style="background-color: #219653;"></span>
-    <span class="custom-color-circle" style="background-color: #2F80ED;"></span>
-    <span class="custom-color-circle" style="background-color: #DF1313;"></span>
-  </div>
-  <div class="custom-color-row">
-    <span class="custom-color-circle" style="background-color: #770505;"></span>
-    <span class="custom-color-circle" style="background-color: #0A5D8B;"></span>
-    <span class="custom-color-circle" style="background-color: #AD5B12;"></span>
-    <span class="custom-color-circle" style="background-color: #4F0E8B;"></span>
-    <span class="custom-color-circle" style="background-color: #0A7090;"></span>
-    <span class="custom-color-circle" style="background-color: #156008;"></span>
-  </div>
-</div>
-        <div class="custom-price-filter">
-            <p class="custom-price">Price</p>
-            <div class="custom-price1-1"><input type="checkbox" id="myCheckbox4" name="myCheckbox" value="checked"><span class="custom-span2">0 - 200</span></div>
-            <div class="custom-price1-2"><input type="checkbox" id="myCheckbox5" name="myCheckbox" value="checked"><span class="custom-span2">200 - 500</span></div>
-            <div class="custom-price1-3"><input type="checkbox" id="myCheckbox6" name="myCheckbox" value="checked"><span class="custom-span2">500 - 1000</span></div>
-            <div class="custom-price1-4"><input type="checkbox" id="myCheckbox7" name="myCheckbox" value="checked"><span class="custom-span2">1 000 - 1 500</span></div>
-            <div class="custom-price1-5"><input type="checkbox" id="myCheckbox8" name="myCheckbox" value="checked"><span class="custom-span2">1 500 - 3 000</span></div>
-            <div class="custom-price1-6"><input type="checkbox" id="myCheckbox9" name="myCheckbox" value="checked"><span class="custom-span2">3 000 - 10 000</span></div>
-        </div>
-    </div>
-    <?php
-    
+//Shortcode för related products i cart
+
+
+function custom_related_products_shortcode($atts)
+{
+    $atts = shortcode_atts(array(
+        'limit' => 2,
+        'left_arrow_image' => 'http://wordpress_slutprojekt.test/wp-content/uploads/2024/04/left-arrow.png',
+        'right_arrow_image' => 'http://wordpress_slutprojekt.test/wp-content/uploads/2024/04/right-arrow.png',
+        'title' => 'Also You May Buy',
+    ), $atts, 'custom_related_products');
+
+    $cart_items = WC()->cart->get_cart();
+    $related_product_ids = array();
+
+    foreach ($cart_items as $cart_item) {
+        $product_id = $cart_item['product_id'];
+        $related_products = wc_get_products(array(
+            'limit' => intval($atts['limit']),
+            'exclude' => array($product_id),
+            'orderby' => 'rand',
+            'return' => 'ids',
+        ));
+
+        $related_product_ids = array_merge($related_product_ids, $related_products);
+    }
+
+    $related_product_ids = array_unique($related_product_ids);
+    $related_products = wc_get_products(array(
+        'include' => $related_product_ids,
+    ));
+
+    if (!empty($related_products)) {
+        ob_start();
+        echo '<div class="related-products">';
+        echo '<h2>' . esc_html($atts['title']) . '</h2>';
+        echo '<div class="related-products-container">';
+
+        echo '<div class="related-product-arrow-left"><img src="' . esc_url($atts['left_arrow_image']) . '" alt="Left Arrow"></div>';
+
+        foreach ($related_products as $related_product) {
+            echo '<div class="related-product">';
+            echo '<a href="' . esc_url($related_product->get_permalink()) . '">' . $related_product->get_image() . '</a>';
+            echo '<h3>' . $related_product->get_name() . '</h3>';
+            if ($related_product->get_rating_count() > 0) {
+                echo '<div class="product-rating">' . wc_get_rating_html($related_product->get_average_rating(), $related_product->get_rating_count()) . '</div>';
+            } else {
+                echo '<div class="product-rating">' . wc_get_rating_html(0, 5) . '</div>';
+            }
+            echo '<p>' . $related_product->get_price_html() . '</p>';
+            echo '</div>';
+        }
+
+        echo '<div class="related-product-arrow-right"><img src="' . esc_url($atts['right_arrow_image']) . '" alt="Right Arrow"></div>';
+
+        echo '</div>'; 
+        echo '</div>'; 
+        return ob_get_clean();
+    } else {
+        return ''; 
+    }
 }
-
-
-add_shortcode( 'custom_div', 'custom_div_shortcode' );
-
-
-
+add_shortcode('custom_related_products', 'custom_related_products_shortcode');

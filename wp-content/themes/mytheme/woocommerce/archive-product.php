@@ -1,97 +1,143 @@
 <?php
-defined( 'ABSPATH' ) || exit;
+/**
+ * The Template for displaying product archives, including the main shop page which is a post type archive
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see https://woo.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 3.4.0
+ */
 
-get_header( 'shop' );
+defined('ABSPATH') || exit;
+
+get_header('shop');
 
 /**
  * Hook: woocommerce_before_main_content.
+ *
+ * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+ * @hooked woocommerce_breadcrumb - 20
+ * @hooked WC_Structured_Data::generate_website_data() - 30
  */
-do_action( 'woocommerce_before_main_content' );
+do_action('woocommerce_before_main_content');
+
+// Anpassad titel för "page title"
+$page_title = 'BEDROOM';
+
+// Lägg till en unik klass för sidan "Bedroom"
+$body_class = 'page-bedroom'; // Du kan byta ut "page-bedroom" till vad som helst som är unikt för denna sida
 ?>
+<body <?php body_class($body_class); ?>>
+<div class="shop-banner">
+    <?php
+    $banner_image = get_theme_mod('banner_image');
+    $h1_text = get_theme_mod('h1_text');
+    $h2_text = get_theme_mod('h2_text');
+    $p_text = get_theme_mod('p_text');
 
-<div class="woocommerce-wrap">
-    <header class="woocommerce-products-header">
-        <!-- Breadcrumb -->
+    if ($banner_image) {
+        echo '<img src="' . esc_url($banner_image) . '" alt="Banner">';
+    }
+    ?>
+
+    <div class="shop-banner-content">
         <?php
-        /**
-         * Hook: woocommerce_archive_description.
-         */
-        do_action( 'woocommerce_archive_description' );
-        echo do_shortcode('[custom_filter_sort_line]');
+        if ($h1_text) {
+            echo '<h1>' . esc_html($h1_text) . '</h1>';
+        }
+        if ($h2_text) {
+            echo '<h2>' . esc_html($h2_text) . '</h2>';
+        }
+        if ($p_text) {
+            echo '<p>' . esc_html($p_text) . '</p>';
+        }
         ?>
-    </header>
-
-    <div class="woocommerce-content">
-        <div class="woocommerce-sidebar">
-            <?php
-            // Display custom filter section
-            if ( function_exists( 'custom_filter_section' ) ) {
-                custom_filter_section();
-            }
-            // Echo the shortcode directly without PHP tags
-            echo do_shortcode( '[custom_categories_filter]' );
-            ?>
-        </div>
-
-        <div class="woocommerce-main-content">
-            <ul class="products" id="product-list">
-                <?php
-                // Display initial 12 products
-                $args = array(
-                    'post_type'      => 'product',
-                    'posts_per_page' => 9,
-                );
-                $query = new WP_Query($args);
-
-                // Loop through and display products
-                if ($query->have_posts()) {
-                    while ($query->have_posts()) {
-                        $query->the_post();
-                        wc_get_template_part('content', 'product');
-                    }
-                }
-                wp_reset_postdata();
-                ?>
-            </ul>
-            <!-- Load More button -->
-            <div id="load-more-container">
-                <button id="load-more-button">Load More Products</button>
-            </div>
-        </div>
     </div>
 </div>
-<?php
-get_footer();
-?>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const loadMoreButton = document.getElementById('load-more-button');
-        const productList = document.getElementById('product-list');
-        let nextPage = 2;
 
-        loadMoreButton.addEventListener('click', function() {
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo admin_url('admin-ajax.php'); ?>');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    const response = xhr.responseText;
-                    if (response.trim() === '') {
-                        // No more products to load, hide the button
-                        loadMoreButton.style.display = 'none';
-                    } else {
-                        // Append the new products to the product list
-                        productList.insertAdjacentHTML('beforeend', response);
-                        nextPage++;
-                    }
-                } else {
-                    console.error('Request failed. Returned status of ' + xhr.status);
-                }
-            };
-            xhr.onerror = function() {
-                console.error('Request failed');
-            };
-            xhr.send('action=mytheme_load_more_products&page=' + nextPage + '&nonce=<?php echo wp_create_nonce('mytheme_lazy_load_nonce'); ?>');
-        });
-    });
-</script>
+<header class="woocommerce-products-header">
+    <!-- Anpassad titel för "page title" -->
+    <h1 class="woocommerce-products-header__title page-title"><?php echo esc_html($page_title); ?></h1>
+
+    <?php
+    /**
+     * Hook: woocommerce_archive_description.
+     *
+     * @hooked woocommerce_taxonomy_archive_description - 10
+     * @hooked woocommerce_product_archive_description - 10
+     */
+    do_action('woocommerce_archive_description');
+    ?>
+</header>
+
+<?php
+if (woocommerce_product_loop()) {
+
+	/**
+	 * Hook: woocommerce_before_shop_loop.
+	 *
+	 * @hooked woocommerce_output_all_notices - 10
+	 * @hooked woocommerce_result_count - 20
+	 * @hooked woocommerce_catalog_ordering - 30
+	 */
+	do_action('woocommerce_before_shop_loop');
+
+
+
+	
+	woocommerce_product_loop_start();
+
+	if (wc_get_loop_prop('total')) {
+		while (have_posts()) {
+			the_post();
+
+			/**
+			 * Hook: woocommerce_shop_loop.
+			 */
+			do_action('woocommerce_shop_loop');
+
+			wc_get_template_part('content', 'product');
+		}
+	}
+
+	woocommerce_product_loop_end();
+
+	/**
+	 * Hook: woocommerce_after_shop_loop.
+	 *
+	 * @hooked woocommerce_pagination - 10
+	 */
+	do_action('woocommerce_after_shop_loop');
+
+	
+} else {
+	/**
+	 * Hook: woocommerce_no_products_found.
+	 *
+	 * @hooked wc_no_products_found - 10
+	 */
+	do_action('woocommerce_no_products_found');
+}
+
+/**
+ * Hook: woocommerce_after_main_content.
+ *
+ * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ */
+do_action('woocommerce_after_main_content');
+
+/**
+ * Hook: woocommerce_sidebar.
+ *
+ * @hooked woocommerce_get_sidebar - 10
+ */
+do_action('woocommerce_sidebar');
+
+get_footer('shop');

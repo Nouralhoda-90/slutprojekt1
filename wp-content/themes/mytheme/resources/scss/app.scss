@@ -1,0 +1,46 @@
+
+@import "./variables";
+
+@import "./product-page";
+
+@import "./header";
+
+@import "./cart";
+
+
+
+body{
+    margin:0;
+    background:rgb(255, 253, 253);
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal; 
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Light.ttf') format('truetype'); /* Lägg till källa för tunn font */
+    font-weight: 300; 
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype'); /* Lägg till källa för tunn font */
+    font-weight: 500; 
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700; 
+    font-style: normal;
+}
+
+
+

@@ -20,8 +20,8 @@ export default defineConfig(() => ({
         minify: false,
         rollupOptions: {
             input: [
-                'resources/scripts/app.js',
-                'resources/styles/app.scss',
+                'resources/js/app.js',
+                'resources/scss/app.scss',
             ],
             output: {
                 entryFileNames: `assets/[name].js`,

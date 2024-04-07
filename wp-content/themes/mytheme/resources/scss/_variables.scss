@@ -1,0 +1,42 @@
+
+/// SINGLE PRODUCT
+$product-color: #2a2b2d;
+$product-size-medium: 18px;
+$product-size-small: 14px;
+$product-weight-small: 300;
+$product-weight-medium: 500;
+$product-font-size-medium: 16px;
+$product-font-size-large:28px;
+
+
+$header-weight: 700;
+//GLOBAL
+$content-width: calc(100% - 154px);
+$dark-grey-color : #323334;
+
+//cart
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url(../fonts/Roboto/Roboto-Bold.ttf) format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url(../fonts/Roboto/Roboto-Medium.ttf) format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url(../fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url(../fonts/Roboto/Roboto-Light.ttf) format('truetype');
+    font-weight: 300;
+}
+
+
