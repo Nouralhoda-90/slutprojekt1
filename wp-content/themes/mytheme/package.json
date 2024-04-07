@@ -3,18 +3,10 @@
     "dev": "node -e \"require('./vite.hot.js').createHotFile()\" && vite",
     "build": "node -e \"require('./vite.hot.js').deleteHotFile()\" && vite build",
     "preview": "vite preview",
-    "test": "node -e \"require('./vite.hot.js')\""
+    "test" : "node -e \"require('./vite.hot.js')\""
   },
   "dependencies": {
-    "sass": "^1.70.0",
-    "vite": "^4.4.9"
-  },
-  "name": "mytheme",
-  "version": "1.0.0",
-  "main": "vite.config.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {},
-  "description": ""
+    "sass": "1.70.0",
+    "vite": "4.4.9"
+  }
 }

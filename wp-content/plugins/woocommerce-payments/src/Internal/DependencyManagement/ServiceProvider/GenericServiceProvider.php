@@ -17,7 +17,6 @@ use WCPay\Internal\Proxy\LegacyProxy;
 use WCPay\Internal\Service\Level3Service;
 use WCPay\Internal\Service\OrderService;
 use WCPay\Internal\Service\SessionService;
-use WCPay\Internal\PluginManagement\TranslationsLoader;
 
 /**
  * WCPay payments generic service provider.
@@ -32,7 +31,6 @@ class GenericServiceProvider extends AbstractServiceProvider {
 		Logger::class,
 		OrderService::class,
 		Level3Service::class,
-		TranslationsLoader::class,
 	];
 
 	/**
@@ -60,9 +58,5 @@ class GenericServiceProvider extends AbstractServiceProvider {
 
 		$container->addShared( SessionService::class )
 			->addArgument( LegacyProxy::class );
-
-		$container->addShared( TranslationsLoader::class )
-			->addArgument( Logger::class )
-			->addArgument( HooksProxy::class );
 	}
 }

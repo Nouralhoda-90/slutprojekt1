@@ -10,7 +10,6 @@ namespace WCPay\Payment_Methods;
 use WC_Payments_Token_Service;
 use WC_Payments_Utils;
 use WCPay\Constants\Country_Code;
-use WCPay\Constants\Currency_Code;
 use WCPay\MultiCurrency\MultiCurrency;
 
 /**
@@ -31,16 +30,16 @@ class Affirm_Payment_Method extends UPE_Payment_Method {
 		$this->title                        = __( 'Affirm', 'woocommerce-payments' );
 		$this->is_reusable                  = false;
 		$this->icon_url                     = plugins_url( 'assets/images/payment-methods/affirm.svg', WCPAY_PLUGIN_FILE );
-		$this->currencies                   = [ Currency_Code::UNITED_STATES_DOLLAR, Currency_Code::CANADIAN_DOLLAR ];
+		$this->currencies                   = [ 'USD', 'CAD' ];
 		$this->accept_only_domestic_payment = true;
 		$this->limits_per_currency          = [
-			Currency_Code::CANADIAN_DOLLAR      => [
+			'CAD' => [
 				Country_Code::CANADA => [
 					'min' => 5000,
 					'max' => 3000000,
 				], // Represents CAD 50 - 30,000 CAD.
 			],
-			Currency_Code::UNITED_STATES_DOLLAR => [
+			'USD' => [
 				Country_Code::UNITED_STATES => [
 					'min' => 5000,
 					'max' => 3000000,

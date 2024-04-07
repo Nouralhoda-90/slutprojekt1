@@ -1,0 +1,137 @@
+header{
+    width: $content-width;
+    height: auto;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+    margin: auto;
+
+    .upper-header{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .column-50{
+            width: 50%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            a{
+                text-decoration: none;
+                .logo-text{
+                    font-family: 700;
+                    font-weight: 700;
+                    font-size: 28px;
+                    line-height: 32.81px;
+                    color: rgb(35, 34, 34);
+                    
+                }
+            }
+            
+            .basket-item-count {
+                background-color: #e26f09;
+                color: #fff;
+                border-radius: 50%;
+                padding: 3px 3px;
+                font-family: "Roboto-Bold";
+                font-weight: 700;
+                font-size: 10px;
+                line-height: 11.72px;
+                position: relative;
+                top: 17px;
+                right: 61px;
+                width: 12px;
+                height: 12px;
+            }
+    
+            nav {
+                display: flex;
+                align-items: center; 
+                margin-left: auto; 
+                position: relative;
+            }
+            
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex; 
+                position: relative;
+            }
+            
+            li {
+                margin-right: 50px;
+                position: relative; /* Add position relative to allow absolute positioning */
+            
+                a {
+                    color: transparent;
+                    font-size: 6px;
+                    display: block;
+                    width: 27px; /* Set the width of the link container */
+                    height: 27px; /* Set the height of the link container */
+                    position: relative; /* Add position relative for absolute positioning of pseudo-elements */
+                }
+            
+                &.search-icon::before,
+                &.account-icon::before,
+                &.cart-icon::before,
+                &.favorites-icon::before {
+                    content: "";
+                    display: inline-block;
+                    width: 100%; /* Set the width to fill the container */
+                    height: 100%; /* Set the height to fill the container */
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-size: contain;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+    }
+}
+.lower-header{
+    width: 100%;
+    border-top: 1px solid #2a2b2d;
+    border-bottom: 1px solid #2a2b2d;
+    nav{
+        display: flex;
+        align-items: center; 
+        margin: auto; 
+        text-align: center;
+        justify-content: center;
+        height: 95px;
+
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex; 
+        }
+
+        li{
+            margin-right: 25px;
+            text-transform: uppercase;
+            margin-left: 55px;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+            font-family: 700;
+            font-weight: 700;
+            line-height: 18.75px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+
+            &:hover{
+                color: rgb(138, 71, 96);
+            }
+        }
+
+    }
+}

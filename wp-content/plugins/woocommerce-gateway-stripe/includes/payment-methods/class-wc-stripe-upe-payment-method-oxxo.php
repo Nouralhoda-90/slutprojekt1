@@ -21,11 +21,10 @@ class WC_Stripe_UPE_Payment_Method_Oxxo extends WC_Stripe_UPE_Payment_Method {
 		parent::__construct();
 		$this->stripe_id            = self::STRIPE_ID;
 		$this->can_refund           = false;
-		$this->title                = 'OXXO';
+		$this->title                = 'Pay with OXXO';
 		$this->is_reusable          = false;
 		$this->supported_currencies = [ 'MXN' ];
 		$this->supported_countries  = [ 'MX' ];
-		$this->supports             = [ 'products' ];
 		$this->label                = __( 'OXXO', 'woocommerce-gateway-stripe' );
 		$this->description          = __(
 			'OXXO is a Mexican chain of convenience stores that allows customers to pay bills and online purchases in-store with cash.',

@@ -9,11 +9,6 @@ if ( ! class_exists( 'WC_Connect_Debug_Tools' ) ) {
 
 	class WC_Connect_Debug_Tools {
 
-		/**
-		 * @var WC_Connect_API_Client
-		 */
-		protected $api_client;
-
 		function __construct( WC_Connect_API_Client $api_client ) {
 			$this->api_client = $api_client;
 

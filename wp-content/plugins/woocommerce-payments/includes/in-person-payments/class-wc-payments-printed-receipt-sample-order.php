@@ -5,8 +5,6 @@
  * @package WooCommerce\Payments
  */
 
-use WCPay\Constants\Currency_Code;
-
 defined( 'ABSPATH' ) || exit;
 /**
  * This class represents a sample order to be used when generating a preview of a printed receipt.
@@ -16,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 class WC_Payments_Printed_Receipt_Sample_Order extends WC_Order {
 	const PREVIEW_RECEIPT_ORDER_DATA = [
 		'id'           => '42',
-		'currency'     => Currency_Code::UNITED_STATES_DOLLAR,
+		'currency'     => 'USD',
 		'subtotal'     => 0,
 		'line_items'   => [
 			[

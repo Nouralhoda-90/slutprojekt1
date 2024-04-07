@@ -416,13 +416,12 @@ class WC_Payments_API_Client {
 	 * @param array  $filters    The filters to be used in the query.
 	 * @param string $user_email The email to search for.
 	 * @param string $deposit_id The deposit to filter on.
-	 * @param string $locale     Site locale.
 	 *
 	 * @return array Export summary
 	 *
 	 * @throws API_Exception - Exception thrown on request failure.
 	 */
-	public function get_transactions_export( $filters = [], $user_email = '', $deposit_id = null, $locale = null ) {
+	public function get_transactions_export( $filters = [], $user_email = '', $deposit_id = null ) {
 		// Map Order # terms to the actual charge id to be used in the server.
 		if ( ! empty( $filters['search'] ) ) {
 			$filters['search'] = WC_Payments_Utils::map_search_orders_to_charge_ids( $filters['search'] );
@@ -432,9 +431,6 @@ class WC_Payments_API_Client {
 		}
 		if ( ! empty( $deposit_id ) ) {
 			$filters['deposit_id'] = $deposit_id;
-		}
-		if ( ! empty( $locale ) ) {
-			$filters['locale'] = $locale;
 		}
 
 		return $this->request( $filters, self::TRANSACTIONS_API . '/download', self::POST );
@@ -582,18 +578,14 @@ class WC_Payments_API_Client {
 	 *
 	 * @param array  $filters    The filters to be used in the query.
 	 * @param string $user_email The email to search for.
-	 * @param string $locale Site locale.
 	 *
 	 * @return array Export summary
 	 *
 	 * @throws API_Exception - Exception thrown on request failure.
 	 */
-	public function get_disputes_export( $filters = [], $user_email = '', $locale = null ) {
+	public function get_disputes_export( $filters = [], $user_email = '' ) {
 		if ( ! empty( $user_email ) ) {
 			$filters['user_email'] = $user_email;
-		}
-		if ( ! empty( $locale ) ) {
-			$filters['locale'] = $locale;
 		}
 
 		return $this->request( $filters, self::DISPUTES_API . '/download', self::POST );
@@ -604,18 +596,14 @@ class WC_Payments_API_Client {
 	 *
 	 * @param array  $filters    The filters to be used in the query.
 	 * @param string $user_email The email to send export to.
-	 * @param string $locale Site locale.
 	 *
 	 * @return array Export summary
 	 *
 	 * @throws API_Exception - Exception thrown on request failure.
 	 */
-	public function get_deposits_export( $filters = [], $user_email = '', $locale = null ) {
+	public function get_deposits_export( $filters = [], $user_email = '' ) {
 		if ( ! empty( $user_email ) ) {
 			$filters['user_email'] = $user_email;
-		}
-		if ( ! empty( $locale ) ) {
-			$filters['locale'] = $locale;
 		}
 
 		return $this->request( $filters, self::DEPOSITS_API . '/download', self::POST );

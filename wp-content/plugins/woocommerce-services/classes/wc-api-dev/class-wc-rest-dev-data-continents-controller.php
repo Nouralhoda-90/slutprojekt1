@@ -44,6 +44,7 @@ class WC_REST_Dev_Data_Continents_Controller extends WC_REST_Dev_Data_Controller
 	protected $rest_base = 'data/continents';
 
 	public function __construct() {
+		parent::__construct();
 		$this->continents = new WC_Connect_Continents();
 	}
 

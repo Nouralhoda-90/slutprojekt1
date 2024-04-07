@@ -11,7 +11,6 @@ use Jetpack_Tracks_Client;
 use Jetpack_Tracks_Event;
 use WC_Payments;
 use WC_Payments_Features;
-use WCPay\Constants\Country_Code;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit; // block direct access.
@@ -132,6 +131,7 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 
 	/**
 	 * Track shopper events with the wcpay_prefix.
+	 * This method will track the event on all WCPay stores.
 	 *
 	 * @param string $event name of the event.
 	 * @param array  $data array of event properties.
@@ -142,7 +142,10 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 			$event = self::$user_prefix . '_' . $event;
 		}
 
-		return $this->tracks_record_event( $event, $data );
+		$is_admin_event      = false;
+		$track_on_all_stores = true;
+
+		return $this->tracks_record_event( $event, $data, $is_admin_event, $track_on_all_stores );
 	}
 
 	/**
@@ -163,28 +166,14 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 	}
 
 	/**
-	 * Check whether the store country is eligible for Tracks.
-	 *
-	 * @return bool
-	 */
-	public function is_country_tracks_eligible() {
-		if ( ! function_exists( 'wc_get_base_location' ) ) {
-			return false;
-		}
-
-		$store_base_location = wc_get_base_location();
-		return ! empty( $store_base_location['country'] ) && Country_Code::UNITED_STATES === $store_base_location['country'];
-	}
-
-
-	/**
 	 * Override parent method to omit the jetpack TOS check and include custom tracking conditions.
 	 *
 	 * @param bool $is_admin_event Indicate whether the event is emitted from admin area.
+	 * @param bool $track_on_all_stores Indicate whether the event is tracked on all WCPay stores.
 	 *
 	 * @return bool
 	 */
-	public function should_enable_tracking( $is_admin_event = false ) {
+	public function should_enable_tracking( $is_admin_event = false, $track_on_all_stores = false ) {
 
 		// Don't track if the gateway is not enabled.
 		$gateway = \WC_Payments::get_gateway();
@@ -195,11 +184,6 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 		// Don't track if the account is not connected.
 		$account = WC_Payments::get_account_service();
 		if ( is_null( $account ) || ! $account->is_stripe_connected() ) {
-			return false;
-		}
-
-		// Don't track any non-US stores.
-		if ( ! $this->is_country_tracks_eligible() ) {
 			return false;
 		}
 
@@ -216,7 +200,8 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 		// For all other events ensure:
 		// 1. Only site pages are tracked.
 		// 2. Site Admin activity in site pages are not tracked.
-		// 3. Otherwise, track only when WooPay is active.
+		// 3. If track_on_all_stores is enabled, track all events.
+		// 4. Otherwise, track only when WooPay is active.
 
 		// Track only site pages.
 		if ( is_admin() && ! wp_doing_ajax() ) {
@@ -226,6 +211,11 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 		// Don't track site admins.
 		if ( is_user_logged_in() && in_array( 'administrator', wp_get_current_user()->roles, true ) ) {
 			return false;
+		}
+
+		// Track all events without checking for WooPay availability.
+		if ( $track_on_all_stores ) {
+			return true;
 		}
 
 		// For the remaining events, don't track when woopay is disabled.
@@ -244,10 +234,11 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 	 * @param string $event_name             The name of the event.
 	 * @param array  $properties             Custom properties to send with the event.
 	 * @param bool   $is_admin_event         Indicate whether the event is emitted from admin area.
+	 * @param bool   $track_on_all_stores    Indicate whether the event is tracked on all WCPay stores.
 	 *
 	 * @return bool|array|\WP_Error|\Jetpack_Tracks_Event
 	 */
-	public function tracks_record_event( $event_name, $properties = [], $is_admin_event = false ) {
+	public function tracks_record_event( $event_name, $properties = [], $is_admin_event = false, $track_on_all_stores = false ) {
 
 		$user = wp_get_current_user();
 
@@ -256,7 +247,7 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 			return false;
 		}
 
-		if ( ! $this->should_enable_tracking( $is_admin_event ) ) {
+		if ( ! $this->should_enable_tracking( $is_admin_event, $track_on_all_stores ) ) {
 			return false;
 		}
 
@@ -335,11 +326,6 @@ class WooPay_Tracker extends Jetpack_Tracks_Client {
 	 * @return array $identity
 	 */
 	public function tracks_get_identity( $user_id ) {
-
-		// If the user is not trackable, return an empty array.
-		if ( ! $this->should_enable_tracking() ) {
-			return [];
-		}
 
 		// Meta is set, and user is still connected.  Use WPCOM ID.
 		$wpcom_id = get_user_meta( $user_id, 'jetpack_tracks_wpcom_id', true );

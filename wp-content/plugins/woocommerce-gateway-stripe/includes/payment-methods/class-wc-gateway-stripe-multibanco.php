@@ -11,9 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 4.1.0
  */
 class WC_Gateway_Stripe_Multibanco extends WC_Stripe_Payment_Gateway {
-
-	const ID = 'stripe_multibanco';
-
 	/**
 	 * Notices (array)
 	 *
@@ -60,7 +57,7 @@ class WC_Gateway_Stripe_Multibanco extends WC_Stripe_Payment_Gateway {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->id                 = self::ID;
+		$this->id                 = 'stripe_multibanco';
 		$this->method_title       = __( 'Stripe Multibanco', 'woocommerce-gateway-stripe' );
 		$this->method_description = sprintf(
 		/* translators: 1) HTML anchor open tag 2) HTML anchor closing tag */

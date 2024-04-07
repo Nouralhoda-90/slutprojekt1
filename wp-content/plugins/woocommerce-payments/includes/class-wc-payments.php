@@ -293,8 +293,6 @@ class WC_Payments {
 		include_once __DIR__ . '/class-wc-payments-utils.php';
 		include_once __DIR__ . '/core/class-mode.php';
 
-		self::$mode = new Mode();
-
 		include_once __DIR__ . '/class-database-cache.php';
 		self::$database_cache = new Database_Cache();
 		self::$database_cache->init_hooks();
@@ -401,10 +399,9 @@ class WC_Payments {
 		include_once __DIR__ . '/class-wc-payment-token-wcpay-sepa.php';
 		include_once __DIR__ . '/class-wc-payments-status.php';
 		include_once __DIR__ . '/class-wc-payments-token-service.php';
-		include_once __DIR__ . '/express-checkout/class-wc-payments-express-checkout-button-display-handler.php';
+		include_once __DIR__ . '/class-wc-payments-express-checkout-button-display-handler.php';
 		include_once __DIR__ . '/class-wc-payments-payment-request-button-handler.php';
 		include_once __DIR__ . '/class-wc-payments-woopay-button-handler.php';
-		include_once __DIR__ . '/class-wc-payments-woopay-direct-checkout.php';
 		include_once __DIR__ . '/class-wc-payments-apple-pay-registration.php';
 		include_once __DIR__ . '/exceptions/class-add-payment-method-exception.php';
 		include_once __DIR__ . '/exceptions/class-amount-too-large-exception.php';
@@ -418,7 +415,6 @@ class WC_Payments {
 		include_once __DIR__ . '/exceptions/class-order-not-found-exception.php';
 		include_once __DIR__ . '/constants/class-base-constant.php';
 		include_once __DIR__ . '/constants/class-country-code.php';
-		include_once __DIR__ . '/constants/class-currency-code.php';
 		include_once __DIR__ . '/constants/class-fraud-meta-box-type.php';
 		include_once __DIR__ . '/constants/class-order-mode.php';
 		include_once __DIR__ . '/constants/class-order-status.php';
@@ -487,6 +483,7 @@ class WC_Payments {
 		self::$failed_transaction_rate_limiter      = new Session_Rate_Limiter( Session_Rate_Limiter::SESSION_KEY_DECLINED_CARD_REGISTRY, 5, 10 * MINUTE_IN_SECONDS );
 		self::$order_success_page                   = new WC_Payments_Order_Success_Page();
 		self::$onboarding_service                   = new WC_Payments_Onboarding_Service( self::$api_client, self::$database_cache );
+		self::$express_checkout_helper              = new WC_Payments_Express_Checkout_Button_Helper( self::$account );
 		self::$woopay_util                          = new WooPay_Utilities();
 		self::$woopay_tracker                       = new WooPay_Tracker( self::get_wc_payments_http() );
 		self::$incentives_service                   = new WC_Payments_Incentives_Service( self::$database_cache );
@@ -542,6 +539,8 @@ class WC_Payments {
 		self::$card_gateway->init_hooks();
 		self::$wc_payments_checkout->init_hooks();
 
+		self::$mode = new Mode();
+
 		self::$webhook_processing_service  = new WC_Payments_Webhook_Processing_Service( self::$api_client, self::$db_helper, self::$account, self::$remote_note_service, self::$order_service, self::$in_person_payments_receipts_service, self::get_gateway(), self::$customer_service, self::$database_cache );
 		self::$webhook_reliability_service = new WC_Payments_Webhook_Reliability_Service( self::$api_client, self::$action_scheduler_service, self::$webhook_processing_service );
 
@@ -556,8 +555,6 @@ class WC_Payments {
 		self::$apple_pay_registration = new WC_Payments_Apple_Pay_Registration( self::$api_client, self::$account, self::get_gateway() );
 
 		self::maybe_display_express_checkout_buttons();
-
-		self::maybe_enable_woopay_direct_checkout();
 
 		// Insert the Stripe Payment Messaging Element only if there is at least one BNPL method enabled.
 		$enabled_bnpl_payment_methods = array_intersect(
@@ -656,8 +653,6 @@ class WC_Payments {
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_assets_script' ] );
 
 		self::$duplicate_payment_prevention_service->init( self::$card_gateway, self::$order_service );
-
-		wcpay_get_container()->get( \WCPay\Internal\PluginManagement\TranslationsLoader::class )->init_hooks();
 	}
 
 	/**
@@ -1459,22 +1454,8 @@ class WC_Payments {
 				add_action( 'admin_init', [ $draft_orders, 'install' ] );
 			}
 
-			new WooPay_Order_Status_Sync( self::$api_client, self::$account );
+			new WooPay_Order_Status_Sync( self::$api_client );
 		}
-	}
-
-	/**
-	 * Initializes woopay direct checkout if the woopay feature flag is enabled.
-	 *
-	 * @return void
-	 */
-	public static function maybe_enable_woopay_direct_checkout() {
-		if ( ! WC_Payments_Features::is_woopay_enabled() || ! WC_Payments_Features::is_woopay_direct_checkout_enabled() ) {
-			return;
-		}
-
-		$woopay_direct_checkout = new WC_Payments_WooPay_Direct_Checkout();
-		$woopay_direct_checkout->init();
 	}
 
 	/**
@@ -1484,10 +1465,9 @@ class WC_Payments {
 	 */
 	public static function maybe_display_express_checkout_buttons() {
 		if ( WC_Payments_Features::are_payments_enabled() ) {
-			$express_checkout_helper                 = new WC_Payments_Express_Checkout_Button_Helper( self::get_gateway(), self::$account );
-			$payment_request_button_handler          = new WC_Payments_Payment_Request_Button_Handler( self::$account, self::get_gateway(), $express_checkout_helper );
-			$woopay_button_handler                   = new WC_Payments_WooPay_Button_Handler( self::$account, self::get_gateway(), self::$woopay_util, $express_checkout_helper );
-			$express_checkout_button_display_handler = new WC_Payments_Express_Checkout_Button_Display_Handler( self::get_gateway(), $payment_request_button_handler, $woopay_button_handler, $express_checkout_helper );
+			$payment_request_button_handler          = new WC_Payments_Payment_Request_Button_Handler( self::$account, self::get_gateway(), self::$express_checkout_helper );
+			$woopay_button_handler                   = new WC_Payments_WooPay_Button_Handler( self::$account, self::get_gateway(), self::$woopay_util );
+			$express_checkout_button_display_handler = new WC_Payments_Express_Checkout_Button_Display_Handler( self::get_gateway(), $payment_request_button_handler, $woopay_button_handler, self::$express_checkout_helper );
 		}
 	}
 

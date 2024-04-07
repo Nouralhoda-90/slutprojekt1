@@ -10,7 +10,6 @@ namespace WCPay\Payment_Methods;
 use WC_Payments_Token_Service;
 use WC_Payments_Utils;
 use WCPay\Constants\Country_Code;
-use WCPay\Constants\Currency_Code;
 use WCPay\MultiCurrency\MultiCurrency;
 
 /**
@@ -31,23 +30,23 @@ class Klarna_Payment_Method extends UPE_Payment_Method {
 		$this->title                        = __( 'Klarna', 'woocommerce-payments' );
 		$this->is_reusable                  = false;
 		$this->icon_url                     = plugins_url( 'assets/images/payment-methods/klarna.svg', WCPAY_PLUGIN_FILE );
-		$this->currencies                   = [ Currency_Code::UNITED_STATES_DOLLAR, Currency_Code::POUND_STERLING, Currency_Code::EURO, Currency_Code::DANISH_KRONE, Currency_Code::NORWEGIAN_KRONE, Currency_Code::SWEDISH_KRONA ];
+		$this->currencies                   = [ 'USD', 'GBP', 'EUR', 'DKK', 'NOK', 'SEK' ];
 		$this->accept_only_domestic_payment = true;
 		$this->countries                    = [ Country_Code::UNITED_STATES, Country_Code::UNITED_KINGDOM, Country_Code::AUSTRIA, Country_Code::GERMANY, Country_Code::NETHERLANDS, Country_Code::BELGIUM, Country_Code::SPAIN, Country_Code::ITALY, Country_Code::IRELAND, Country_Code::DENMARK, Country_Code::FINLAND, Country_Code::NORWAY, Country_Code::SWEDEN ];
 		$this->limits_per_currency          = [
-			Currency_Code::UNITED_STATES_DOLLAR => [
+			'USD' => [
 				Country_Code::UNITED_STATES => [
 					'min' => 0,
 					'max' => 1000000,
 				],
 			],
-			Currency_Code::POUND_STERLING       => [
+			'GBP' => [
 				Country_Code::UNITED_KINGDOM => [
 					'min' => 0,
 					'max' => 1150000,
 				],
 			],
-			Currency_Code::EURO                 => [
+			'EUR' => [
 				Country_Code::AUSTRIA     => [
 					'min' => 1,
 					'max' => 1000000,
@@ -81,19 +80,19 @@ class Klarna_Payment_Method extends UPE_Payment_Method {
 					'max' => 1000000,
 				],
 			],
-			Currency_Code::DANISH_KRONE         => [
+			'DKK' => [
 				Country_Code::DENMARK => [
 					'min' => 100,
 					'max' => 100000000,
 				],
 			],
-			Currency_Code::NORWEGIAN_KRONE      => [
+			'NOK' => [
 				Country_Code::NORWAY => [
 					'min' => 0,
 					'max' => 100000000,
 				],
 			],
-			Currency_Code::SWEDISH_KRONA        => [
+			'SEK' => [
 				Country_Code::SWEDEN => [
 					'min' => 0,
 					'max' => 15000000,

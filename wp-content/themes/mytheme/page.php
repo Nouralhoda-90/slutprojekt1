@@ -1,14 +1,10 @@
 <?php get_header(); ?>
-<!-- CONTENT -->
-<main class="content">
 
-    <?= the_content() ?>
-    <?php
-    // get_template_part('templates/main_content_template/hero_section');
-    // do_action("mytheme_page_content_loaded");
+<div id="content">
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <?php the_content(); ?>
+    <?php endwhile;
+    endif; ?>
+</div>
 
-    ?>
-
-</main>
 <?php get_footer(); ?>
-
