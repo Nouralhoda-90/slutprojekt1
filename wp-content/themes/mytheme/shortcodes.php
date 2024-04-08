@@ -24,7 +24,7 @@ function services_shortcode() {
 add_shortcode('services', 'services_shortcode');
 
 //Shortcode "bedsheet sets" in homepage
-function slutprojekt_shortcode_draw_box($attr)
+function moody_studio_shortcode_draw_box($attr)
 {
     $attr = shortcode_atts(
         array(
@@ -42,4 +42,4 @@ function slutprojekt_shortcode_draw_box($attr)
        </div>';
 
 }
-add_shortcode("box", "slutprojekt_shortcode_draw_box");
+add_shortcode("box", "moody_studio_shortcode_draw_box");
